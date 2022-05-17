@@ -6,19 +6,30 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  onAuthStateChanged,
 } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { async } from "@firebase/util";
+import { useNavigation } from "@react-navigation/core";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+      }
+    });
+  }, []);
 
   const handleSignUp = async () => {
     await createUserWithEmailAndPassword(auth, email, password)
@@ -29,7 +40,7 @@ const LoginScreen = () => {
   const handleLogin = async () => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log("okkkkkk");
+        navigation.navigate("Home");
       })
       .catch((error) => alert(error.massage));
   };
