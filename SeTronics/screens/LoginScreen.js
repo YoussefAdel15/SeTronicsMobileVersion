@@ -53,7 +53,8 @@ const LoginScreen = () => {
       .catch((error) => alert(error.massage));
   };
   return (
-    <KeyboardAvoidingView style={styles.container} behavior={"padding"}>
+    <View style={styles.container} behavior={"padding"}>
+      <Image source={require("../SeTronics.png")} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -69,7 +70,6 @@ const LoginScreen = () => {
           secureTextEntry
         />
       </View>
-
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
@@ -96,7 +96,7 @@ const LoginScreen = () => {
           <Text style={[styles.buttonOutlineText]}>Forgot Password</Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
