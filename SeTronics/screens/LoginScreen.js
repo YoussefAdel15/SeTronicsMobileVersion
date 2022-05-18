@@ -54,7 +54,7 @@ const LoginScreen = () => {
   };
   return (
     <View style={styles.container} behavior={"padding"}>
-      <Image source={require("../SeTronics.png")} />
+      <Image style={styles.image} source={require("../SeTronics.png")} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -146,5 +146,9 @@ const styles = StyleSheet.create({
     color: "#0782F9",
     fontWeight: "700",
     fontSize: 16,
+  },
+  image: {
+    width: 250,
+    height: 250,
   },
 });
