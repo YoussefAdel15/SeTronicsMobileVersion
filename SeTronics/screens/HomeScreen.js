@@ -21,11 +21,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  // const handleLogout = async () => {
-  //   await signOut(auth)
-  //     .then(() => navigation.navigate("Login"))
-  //     .catch((error) => alert(error.massage));
-  // };
+  const handleLogout = async () => {
+    await signOut(auth)
+      .then(() => navigation.navigate("Login"))
+      .catch((error) => alert(error.massage));
+  };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
@@ -49,6 +49,12 @@ const HomeScreen = () => {
                 backgroundColor: COLOURS.backgroundLight,
               }}
             />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleLogout()}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Sign out</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <MaterialCommunityIcons
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#0782F9",
-    width: "100%",
+    width: "50%",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
