@@ -9,6 +9,7 @@ import {
   Image,
   StatusBar,
   ScrollView,
+  FlatList,
 } from "react-native";
 import { signOut } from "firebase/auth";
 import React, { useState, useEffect } from "react";
@@ -18,8 +19,30 @@ import { async } from "@firebase/util";
 import { COLOURS } from "./DB/Database";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import productCard from "../componants/productCard";
+import {
+  addProduct,
+  deleteProduct,
+  editProduct,
+  getProductByName,
+  getProducts,
+  subscribeProduct,
+} from "../models/products";
 
 const HomeScreen = () => {
+  const [products, setProducts] = useState([]);
+
+  const getProductHandle = async () => {
+    const arr = await getProducts();
+    setProducts(arr);
+    console.log(arr);
+    console.log(products);
+  };
+
+  useEffect(async() => {
+    await getProductHandle();
+  }, []);
+
   const navigation = useNavigation();
   const handleLogout = async () => {
     await signOut(auth)
@@ -144,7 +167,33 @@ const HomeScreen = () => {
             SeeAll
           </Text>
         </View>
+        {/* <TouchableOpacity
+          onPress={() =>
+            addProduct({
+              productName: "amd",
+              price: 3000,
+            })
+          }
+        >
+          <Text>addProduct</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log(getProducts())}>
+          <Text>get product</Text>
+        </TouchableOpacity> */}
       </ScrollView>
+      <FlatList
+        data={products}
+        // numColumns={2}
+        renderItem={(itemData) => {
+          <productCard
+            productName={itemData.item.productName}
+            price={itemData.item.price}
+            details={itemData.item.details}
+            type={itemData.item.type}
+            image={itemData.item.image}
+          />;
+        }}
+      />
     </View>
   );
 };

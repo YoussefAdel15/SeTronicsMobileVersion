@@ -33,7 +33,9 @@ const LoginScreen = () => {
 
   const handleSignUp = async () => {
     await createUserWithEmailAndPassword(auth, email, password)
-      .then(() => console.log("ok"))
+      .then(() => {
+        alert("DONE, Now You can Login");
+      })
       .catch((error) => alert(error.massage));
   };
 
