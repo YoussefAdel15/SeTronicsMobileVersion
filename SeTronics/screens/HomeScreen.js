@@ -19,7 +19,7 @@ import { async } from "@firebase/util";
 import { COLOURS } from "./DB/Database";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import productCard from "../componants/productCard";
+import ProductCard from "../componants/ProductCard";
 import {
   addProduct,
   deleteProduct,
@@ -36,11 +36,10 @@ const HomeScreen = () => {
     const arr = await getProducts();
     setProducts(arr);
     console.log(arr);
-    console.log(products);
   };
 
-  useEffect(async() => {
-    await getProductHandle();
+  useEffect(() => {
+    getProductHandle();
   }, []);
 
   const navigation = useNavigation();
@@ -185,13 +184,15 @@ const HomeScreen = () => {
         data={products}
         // numColumns={2}
         renderItem={(itemData) => {
-          <productCard
-            productName={itemData.item.productName}
-            price={itemData.item.price}
-            details={itemData.item.details}
-            type={itemData.item.type}
-            image={itemData.item.image}
-          />;
+          return (
+            <ProductCard
+              productName={itemData.item.productName}
+              price={itemData.item.price}
+              details={itemData.item.details}
+              type={itemData.item.type}
+              image={itemData.item.image}
+            />
+          );
         }}
       />
     </View>

@@ -1,9 +1,9 @@
 import react, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const productCard = ({ productName, price, image, details, type }) => {
+const ProductCard = ({ productName, price, image, details, type }) => {
   return (
-    <View style={{height:300, width:300 , borderWidth:1}}>
+    <View style={{ height: 100, width: 100, borderWidth: 1 }}>
       <Image style={{ width: 100, height: 100 }} source={image} />
       <Text>
         {productName} {price} {details} {type}
@@ -12,4 +12,4 @@ const productCard = ({ productName, price, image, details, type }) => {
   );
 };
 
-export default productCard;
+export default ProductCard;
