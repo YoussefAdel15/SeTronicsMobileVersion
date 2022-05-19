@@ -16,7 +16,7 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { async } from "@firebase/util";
-import { COLOURS } from "./DB/Database";
+import { COLOURS, Items } from "./DB/Database";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
@@ -36,6 +36,7 @@ const HomeScreen = () => {
     const arr = await getProducts();
     setProducts(arr);
     console.log(arr);
+    console.log(products[0]);
   };
 
   useEffect(() => {
@@ -153,7 +154,7 @@ const HomeScreen = () => {
                 marginLeft: 10,
               }}
             >
-              41
+              {products.length}
             </Text>
           </View>
           <Text
@@ -179,22 +180,70 @@ const HomeScreen = () => {
         <TouchableOpacity onPress={() => console.log(getProducts())}>
           <Text>get product</Text>
         </TouchableOpacity> */}
+        <View style={{ paddingLeft: 20 }}>
+          <FlatList
+            data={products.slice(0, 2)}
+            horizontal={true}
+            renderItem={(itemData) => {
+              return (
+                <ProductCard
+                  productName={itemData.item.productName}
+                  price={itemData.item.price}
+                  details={itemData.item.details}
+                  type={itemData.item.type}
+                  image={itemData.item.image}
+                />
+              );
+            }}
+          />
+        </View>
+        <View
+          style={{
+            padding: 16,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                color: COLOURS.black,
+                fontWeight: "500",
+                letterSpacing: 1,
+              }}
+            >
+              Bundles
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: COLOURS.black,
+                fontWeight: "400",
+                opacity: 0.5,
+                marginLeft: 10,
+              }}
+            >
+              {products.length}
+            </Text>
+          </View>
+          <Text
+            style={{
+              fontSize: 14,
+              color: COLOURS.blue,
+              fontWeight: "400",
+            }}
+          >
+            SeeAll
+          </Text>
+        </View>
       </ScrollView>
-      <FlatList
-        data={products}
-        // numColumns={2}
-        renderItem={(itemData) => {
-          return (
-            <ProductCard
-              productName={itemData.item.productName}
-              price={itemData.item.price}
-              details={itemData.item.details}
-              type={itemData.item.type}
-              image={itemData.item.image}
-            />
-          );
-        }}
-      />
     </View>
   );
 };
