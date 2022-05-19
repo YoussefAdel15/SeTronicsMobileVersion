@@ -15,7 +15,7 @@ import { async } from "@firebase/util";
 
 async function getProductByName(name) {
   const productsColumn = collection(db, "products");
-  const que = query(productsColumn, where("productName", "==", "name"));
+  const que = query(productsColumn, where("productName", "==", name));
   const productSnapShot = await getDocs(que);
   const productObject = productSnapShot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };

@@ -20,6 +20,7 @@ import { COLOURS, Items } from "./DB/Database";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
+import BundleCard from "../componants/BundleCard";
 import {
   addProduct,
   deleteProduct,
@@ -29,7 +30,17 @@ import {
   subscribeProduct,
 } from "../models/products";
 
+import {
+  addbundle,
+  deletebundle,
+  editbundle,
+  getBundleByName,
+  getbundles,
+  subscribebundle,
+} from "../models/bundle";
+
 const HomeScreen = () => {
+  // for products
   const [products, setProducts] = useState([]);
 
   const getProductHandle = async () => {
@@ -43,6 +54,21 @@ const HomeScreen = () => {
     getProductHandle();
   }, []);
 
+  //for bundles
+
+  const [bundle, setBundles] = useState([]);
+
+  const getBundleHandle = async () => {
+    const arr = await getbundles();
+    setBundles(arr);
+    console.log(arr);
+  };
+
+  useEffect(() => {
+    getBundleHandle();
+  }, []);
+
+  //buttons (we be removed)
   const navigation = useNavigation();
   const handleLogout = async () => {
     await signOut(auth)
@@ -180,6 +206,7 @@ const HomeScreen = () => {
         <TouchableOpacity onPress={() => console.log(getProducts())}>
           <Text>get product</Text>
         </TouchableOpacity> */}
+        {/* products */}
         <View style={{ paddingLeft: 20 }}>
           <FlatList
             data={products.slice(0, 2)}
@@ -242,6 +269,23 @@ const HomeScreen = () => {
           >
             SeeAll
           </Text>
+        </View>
+        {/* bundle */}
+        <View style={{ paddingLeft: 20 }}>
+          <FlatList
+            data={bundle.slice(0, 1)}
+            horizontal={true}
+            renderItem={(itemData) => {
+              return (
+                <BundleCard
+                  bundleName={itemData.item.bundleName}
+                  price={itemData.item.price}
+                  specs={itemData.item.specs}
+                  image={itemData.item.image}
+                />
+              );
+            }}
+          />
         </View>
       </ScrollView>
     </View>

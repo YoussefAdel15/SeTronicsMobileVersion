@@ -14,7 +14,7 @@ import {
 import { async } from "@firebase/util";
 
 async function getBundleByName(name) {
-  const bundleColumn = collection(db, "bundle");
+  const bundleColumn = collection(db, "bundles");
   const que = query(bundleColumn, where("bundleName", "==", "name"));
   const productSnapShot = await getDocs(que);
   const bundleObject = productSnapShot.docs.map((doc) => {
@@ -24,8 +24,8 @@ async function getBundleByName(name) {
 }
 
 async function getbundles() {
-  const bundlesColumn = collection(db, "bundle");
-  const bundleSnapShot = await getDocs(bundle);
+  const bundlesColumn = collection(db, "bundles");
+  const bundleSnapShot = await getDocs(bundlesColumn);
   const bundleObject = bundleSnapShot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
@@ -34,7 +34,7 @@ async function getbundles() {
 
 async function addbundle(object) {
   try {
-    await addDoc(collection(db, "bundle"), object);
+    await addDoc(collection(db, "bundles"), object);
   } catch (error) {
     console.log(error.massage);
   }
@@ -42,7 +42,7 @@ async function addbundle(object) {
 
 async function editbundle(object) {
   try {
-    await setDoc(doc(db, "bundle", object.id), object);
+    await setDoc(doc(db, "bundles", object.id), object);
   } catch (error) {
     console.log(error.massage);
   }
@@ -50,7 +50,7 @@ async function editbundle(object) {
 
 async function deletebundle(object) {
   try {
-    await deleteDoc(doc(db, "bundle", object.id));
+    await deleteDoc(doc(db, "bundles", object.id));
   } catch (error) {
     console.log(error.massage);
   }
@@ -58,7 +58,7 @@ async function deletebundle(object) {
 
 async function subscribebundle(callback) {
   const unsubscribe = onSnapshot(
-    query(collection(db, "bundle")),
+    query(collection(db, "bundles")),
     (Snapshot) => {
       const source = Snapshot.metadata.hasPendingWrites ? "Local" : "Server";
       Snapshot.docChanges().forEach((change) => {
