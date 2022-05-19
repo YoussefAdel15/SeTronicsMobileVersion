@@ -100,7 +100,7 @@ const HomeScreen = () => {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => handleLogout()}
+            onPress={() => navigation.navigate("Profile")}
             style={styles.button}
           >
             <Text style={styles.buttonText}>Sign out</Text>
@@ -257,7 +257,7 @@ const HomeScreen = () => {
                 marginLeft: 10,
               }}
             >
-              {products.length}
+              {bundle.length}
             </Text>
           </View>
           <Text
