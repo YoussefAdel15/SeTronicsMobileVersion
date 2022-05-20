@@ -6,12 +6,26 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/core";
+import { getUsers } from "../models/user";
+import { auth } from "../firebase";
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
+  const [user, setUser] = useState([]);
+  const [image, setImage] = useState("");
+  const initialInfo = async () => {
+    const array = await getUsers();
+    const object = array.find((e) => e.email === auth.currentUser.email);
+    console.log(object);
+    console.log(user);
+    setImage(object.image);
+  };
+  useEffect(() => {
+    initialInfo();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView
@@ -25,7 +39,7 @@ const ProfileScreen = () => {
         {/* <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Text>Profile Page</Text>
         </TouchableOpacity> */}
-        <Image style={styles.userImg} source={require("../profile.jpg")} />
+        <Image style={styles.userImg} source={image} />
         <Text style={styles.userName}>Youssef Adel</Text>
       </ScrollView>
     </SafeAreaView>

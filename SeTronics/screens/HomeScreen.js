@@ -278,6 +278,9 @@ const HomeScreen = () => {
                 color: COLOURS.blue,
                 fontWeight: "400",
               }}
+              onPress={() => {
+                navigation.navigate("Bundles");
+              }}
             >
               SeeAll
             </Text>

@@ -14,14 +14,19 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
+import Entypo from "react-native-vector-icons/Entypo";
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { addUser } from "../models/user";
+import { COLOURS } from "./constants";
 
-const LoginScreen = () => {
+const SignupScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
 
   const navigation = useNavigation();
 
@@ -32,29 +37,60 @@ const LoginScreen = () => {
     });
   }, []);
 
-  const handleSignUp = () => {
-    navigation.navigate("Products");
-  };
-
-  const handleLogin = async () => {
-    await signInWithEmailAndPassword(auth, email, password)
+  const handleSignUp = async () => {
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+      name,
+      phoneNumber,
+      address
+    )
       .then(() => {
-        navigation.navigate("Home");
-      })
-      .catch((error) => alert(error.massage));
-  };
-
-  const handleForget = async () => {
-    await sendPasswordResetEmail(auth, email)
-      .then(() => {
-        console.log("okekekek");
+        addUser({
+          email: email,
+          image:
+            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fminervastrategies.com%2Fwho-we-are%2Fdefault-avatar%2F&psig=AOvVaw1aKizKN9D2p6bkk4w1AFa3&ust=1653148665392000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjO3eu47vcCFQAAAAAdAAAAABAI",
+          name: name,
+          phoneNumber: phoneNumber,
+          address: address,
+        });
       })
       .catch((error) => alert(error.massage));
   };
   return (
     <View style={styles.container} behavior={"padding"}>
+      <View
+        style={{
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <TouchableOpacity>
+          <Entypo
+            name="chevron-thin-left"
+            style={{
+              fontSize: 18,
+              color: COLOURS.backgroundMedium,
+              padding: 12,
+              borderRadius: 10,
+              backgroundColor: COLOURS.backgroundLight,
+            }}
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
+          />
+        </TouchableOpacity>
+      </View>
       <Image style={styles.image} source={require("../SeTronics.png")} />
       <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Name"
+          value={name}
+          onChangeText={(text) => setName(text)}
+          style={styles.input}
+        />
         <TextInput
           placeholder="Email"
           value={email}
@@ -68,38 +104,34 @@ const LoginScreen = () => {
           style={styles.input}
           secureTextEntry
         />
+        <TextInput
+          placeholder="PhoneNumber"
+          value={phoneNumber}
+          onChangeText={(text) => setPhoneNumber(text)}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Address"
+          value={address}
+          onChangeText={(text) => setAddress(text)}
+          style={styles.input}
+        />
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
-            handleLogin();
-          }}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>LogIn</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("SignUp")
+            handleSignUp();
           }}
           style={[styles.button, , styles.buttonOutline]}
         >
           <Text style={[styles.buttonOutlineText]}>SignUp</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            handleForget();
-          }}
-          style={[styles.button, , styles.buttonOutline]}
-        >
-          <Text style={[styles.buttonOutlineText]}>Forgot Password</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default LoginScreen;
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {
