@@ -16,7 +16,7 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 import { async } from "@firebase/util";
-import { COLOURS, Items } from "./DB/Database";
+import { COLOURS } from "./constants";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
@@ -183,15 +183,18 @@ const HomeScreen = () => {
               {products.length}
             </Text>
           </View>
-          <Text
+          <TouchableOpacity
             style={{
               fontSize: 14,
               color: COLOURS.blue,
               fontWeight: "400",
             }}
+            onPress={() => {
+              navigation.navigate("Products");
+            }}
           >
             SeeAll
-          </Text>
+          </TouchableOpacity>
         </View>
         {/* <TouchableOpacity
           onPress={() =>
@@ -273,7 +276,7 @@ const HomeScreen = () => {
         {/* bundle */}
         <View style={{ paddingLeft: 20 }}>
           <FlatList
-            data={bundle.slice(0, 1)}
+            data={bundle.slice(0, 2)}
             horizontal={true}
             renderItem={(itemData) => {
               return (

@@ -1,0 +1,1 @@
+// card in products page

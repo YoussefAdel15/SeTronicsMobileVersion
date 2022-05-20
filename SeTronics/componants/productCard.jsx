@@ -12,16 +12,19 @@ const ProductCard = ({ productName, price, image, details, type }) => {
     >
       <View
         style={{
-          height: 150,
-          width: 150,
-          borderWidth: 1,
+          height: 170,
+          width: 170,
           marginRight: 40,
           justifyContent: "center",
         }}
       >
-        <Image style={{ width: 100, height: 100 }} source={image} />
+        <Image
+          style={{ width: 130, height: 100, alignContent: "center" }}
+          source={image}
+        />
         <Text>
-          {productName} {price}
+          {productName}
+          {"\n"}price : {price} EGP
         </Text>
       </View>
     </TouchableOpacity>

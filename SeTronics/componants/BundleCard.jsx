@@ -14,14 +14,13 @@ const BundleCard = ({ bundleName, price, image, specs }) => {
         style={{
           height: 150,
           width: 150,
-          borderWidth: 1,
           marginRight: 40,
           justifyContent: "center",
         }}
       >
         <Image style={{ width: 100, height: 100 }} source={image} />
         <Text>
-          {bundleName} {price}
+          {bundleName} {"\n"}price : {price} EGP
         </Text>
       </View>
     </TouchableOpacity>
