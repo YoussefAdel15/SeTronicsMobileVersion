@@ -193,7 +193,15 @@ const HomeScreen = () => {
               navigation.navigate("Products");
             }}
           >
-            <Text>SeeAll</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: COLOURS.blue,
+                fontWeight: "400",
+              }}
+            >
+              SeeAll
+            </Text>
           </TouchableOpacity>
         </View>
         {/* <TouchableOpacity
@@ -263,15 +271,17 @@ const HomeScreen = () => {
               {bundle.length}
             </Text>
           </View>
-          <Text
-            style={{
-              fontSize: 14,
-              color: COLOURS.blue,
-              fontWeight: "400",
-            }}
-          >
-            SeeAll
-          </Text>
+          <TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 14,
+                color: COLOURS.blue,
+                fontWeight: "400",
+              }}
+            >
+              SeeAll
+            </Text>
+          </TouchableOpacity>
         </View>
         {/* bundle */}
         <View style={{ paddingLeft: 20 }}>

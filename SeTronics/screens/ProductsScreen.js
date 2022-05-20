@@ -5,13 +5,15 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  TextInput,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLOURS } from "./constants";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/core";
-import ProductCard from "../componants/ProductCard";
+import AllProductsCard from "../componants/AllProductsCard";
 import {
   addProduct,
   deleteProduct,
@@ -22,6 +24,7 @@ import {
 } from "../models/products";
 
 export default function ProductsScreen() {
+  const arr = [];
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
 
@@ -45,13 +48,16 @@ export default function ProductsScreen() {
       >
         <TouchableOpacity>
           <Entypo
-            name="shopping-bag"
+            name="chevron-thin-left"
             style={{
               fontSize: 18,
               color: COLOURS.backgroundMedium,
               padding: 12,
               borderRadius: 10,
               backgroundColor: COLOURS.backgroundLight,
+            }}
+            onPress={() => {
+              navigation.navigate("Home");
             }}
           />
         </TouchableOpacity>
@@ -75,22 +81,57 @@ export default function ProductsScreen() {
           />
         </TouchableOpacity>
       </View>
-
-      <FlatList
-        data={products}
-        horizontal={true}
-        renderItem={(itemData) => {
-          return (
-            <ProductCard
-              productName={itemData.item.productName}
-              price={itemData.item.price}
-              details={itemData.item.details}
-              type={itemData.item.type}
-              image={itemData.item.image}
-            />
-          );
+      <View
+        style={{
+          padding: 16,
+          flexDirection: "row",
+          justifyContent: "space-between",
         }}
-      />
+      >
+        <TextInput
+          placeholder="Search"
+          style={{
+            paddingVertical: 15,
+            paddingHorizontal: 15,
+            width: 400,
+            backgroundColor: "#fffafa",
+            borderRadius: 60,
+            borderColor: "#C0C0C0",
+            borderWidth: 1,
+          }}
+        />
+        <TouchableOpacity>
+          <AntDesign
+            name="search1"
+            style={{
+              paddingVertical: 15,
+              paddingHorizontal: 15,
+              width: 50,
+              backgroundColor: "#fffafa",
+              borderRadius: 60,
+              borderColor: "#C0C0C0",
+              borderWidth: 1,
+            }}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={{ padding: 20 }}>
+        <FlatList
+          data={products}
+          horizontal={false}
+          renderItem={(itemData) => {
+            return (
+              <AllProductsCard
+                productName={itemData.item.productName}
+                price={itemData.item.price}
+                details={itemData.item.details}
+                type={itemData.item.type}
+                image={itemData.item.image}
+              />
+            );
+          }}
+        />
+      </View>
     </ScrollView>
   );
 }
