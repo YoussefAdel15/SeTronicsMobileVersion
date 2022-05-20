@@ -14,12 +14,13 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
+import { addUser } from "../models/user";
 import Entypo from "react-native-vector-icons/Entypo";
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
-import { addUser } from "../models/user";
 import { COLOURS } from "./constants";
+import { register, getUserUId } from "../models/auth";
 
 const SignupScreen = () => {
   const [email, setEmail] = useState("");
@@ -27,37 +28,91 @@ const SignupScreen = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [image, setImage] = useState("");
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-      }
-    });
-  }, []);
-
-  const handleSignUp = async () => {
-    await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-      name,
-      phoneNumber,
-      address
-    )
-      .then(() => {
-        addUser({
-          email: email,
-          image:
-            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fminervastrategies.com%2Fwho-we-are%2Fdefault-avatar%2F&psig=AOvVaw1aKizKN9D2p6bkk4w1AFa3&ust=1653148665392000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjO3eu47vcCFQAAAAAdAAAAABAI",
-          name: name,
-          phoneNumber: phoneNumber,
-          address: address,
+  function registerUser() {
+    console.log("this is email ", email);
+    if ((email === "", password === "", name === "", phoneNumber === "")) {
+      alert("email or password is empty!");
+    } else {
+      register(email, password)
+        .then(() => {
+          console.log(getUserUId());
+          getUserUId().then((id) => {
+            // console.log(id);
+            addUser({
+              id: id,
+              email,
+              password,
+              name,
+              phoneNumber,
+              address,
+              image:
+                "https://64.media.tumblr.com/d82d24956974272dff1f745a004a43bf/tumblr_o51oavbMDx1ugpbmuo3_540.png",
+            });
+          });
+          navigation.navigate("Login");
+        })
+        .catch((e) => {
+          console.log(e.message);
         });
-      })
-      .catch((error) => alert(error.massage));
-  };
+    }
+  }
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //     }
+  //   });
+  // }, []);
+
+  // const handleSignUp = async () => {
+  //     await createUserWithEmailAndPassword(
+  //        authentication,email,password,name, usename,confirmpassword,city,state,gender,age,phone
+  //     )
+  //     .then(() => {
+  //       // addUser({
+  //       //   email: email,
+  //       //   image:
+  //       //     "https://www.google.com/url?sa=i&url=https%3A%2F%2Fminervastrategies.com%2Fwho-we-are%2Fdefault-avatar%2F&psig=AOvVaw1aKizKN9D2p6bkk4w1AFa3&ust=1653148665392000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjO3eu47vcCFQAAAAAdAAAAABAI",
+  //       //   name: name,
+  //       //   phoneNumber: phoneNumber,
+  //       //   address: address,
+  //       //   id : id
+  //       // });
+  //       getUserUId().then((id) => {
+  //         // console.log(id);
+  //         addUser({
+  //           email: email,
+  //           image:
+  //             "https://www.google.com/url?sa=i&url=https%3A%2F%2Fminervastrategies.com%2Fwho-we-are%2Fdefault-avatar%2F&psig=AOvVaw1aKizKN9D2p6bkk4w1AFa3&ust=1653148665392000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCJjO3eu47vcCFQAAAAAdAAAAABAI",
+  //           name: name,
+  //           phoneNumber: phoneNumber,
+  //           address: address,
+  //           id: id,
+  //         });
+  //       });
+  //     })
+  //     .catch((error) => alert(error.massage));
+  // };
+  // async function register(
+  //   email,
+  //   password,
+  //   name,
+  //   image,
+  //   phone
+  // ) {
+  //   await createUserWithEmailAndPassword(
+  //     authentication,
+  //     email,
+  //     password,
+  //     name,
+  //     usename,
+  //     phone
+  //   );
+  // }
+
   return (
     <View style={styles.container} behavior={"padding"}>
       <View
@@ -120,7 +175,7 @@ const SignupScreen = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
-            handleSignUp();
+            registerUser();
           }}
           style={[styles.button, , styles.buttonOutline]}
         >

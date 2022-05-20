@@ -14,43 +14,62 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
-import React, { useState, useEffect } from "react";
+import { addUser } from "../models/user";
+import Entypo from "react-native-vector-icons/Entypo";
+import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
-import { addUser } from "../models/user";
+import { COLOURS } from "./constants";
+import { login, getUserToken } from "../models/auth";
+import { AuthContext } from "./utils";
 
 const LoginScreen = () => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-      }
-    });
-  }, []);
-
-  const handleSignUp = () => {
-    navigation.navigate("Products");
-  };
-
-  const handleLogin = async () => {
-    await signInWithEmailAndPassword(auth, email, password)
+  const signIn = useContext(AuthContext);
+  function signInUser() {
+    login(email, password)
       .then(() => {
+        console.log(email, password);
+        console.log("here sign in*");
         navigation.navigate("Home");
       })
-      .catch((error) => alert(error.massage));
-  };
+      .catch((e) => {
+        alert("invalid email or password");
+        console.log(e.message);
+      });
+  }
+  const navigation = useNavigation();
 
-  const handleForget = async () => {
-    await sendPasswordResetEmail(auth, email)
-      .then(() => {
-        console.log("okekekek");
-      })
-      .catch((error) => alert(error.massage));
-  };
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //     }
+  //   });
+  // }, []);
+
+  // const handleSignUp = () => {
+  //   navigation.navigate("Products");
+  // };
+
+  // const handleLogin = async () => {
+  //   await signInWithEmailAndPassword(auth, email, password)
+  //     .then(() => {
+  //       navigation.navigate("Home");
+  //     })
+  //     .catch((error) => alert(error.massage));
+  // };
+
+  // const handleForget = async () => {
+  //   await sendPasswordResetEmail(auth, email)
+  //     .then(() => {
+  //       console.log("okekekek");
+  //     })
+  //     .catch((error) => alert(error.massage));
+  // };
+
   return (
     <View style={styles.container} behavior={"padding"}>
       <Image style={styles.image} source={require("../SeTronics.png")} />
@@ -72,7 +91,7 @@ const LoginScreen = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => {
-            handleLogin();
+            signInUser();
           }}
           style={styles.button}
         >
@@ -80,7 +99,7 @@ const LoginScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("SignUp")
+            navigation.navigate("SignUp");
           }}
           style={[styles.button, , styles.buttonOutline]}
         >

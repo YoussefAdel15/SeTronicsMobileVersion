@@ -9,6 +9,7 @@ import ProfileScreen from "./screens/ProfileScreen.js";
 import ProductsScreen from "./screens/ProductsScreen.js";
 import SignupScreen from "./screens/SignupScreen.js";
 import BundlesScreen from "./screens/BundlesScreen";
+import AboutUsScreen from "./screens/AboutUsScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="Profile"
           component={ProfileScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AboutUs"
+          component={AboutUsScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

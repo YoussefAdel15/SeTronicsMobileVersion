@@ -1,4 +1,4 @@
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   getDocs,
   doc,
@@ -24,12 +24,11 @@ async function getUserByName(name) {
 }
 
 async function getUsers() {
-  const usersColumn = collection(db, "users");
-  const userSnapShot = await getDocs(usersColumn);
-  const userObject = userSnapShot.docs.map((doc) => {
+  const usersCol = collection(db, "users");
+  const userSnapshot = await getDocs(usersCol);
+  return userSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-  return userObject;
 }
 
 async function addUser(object) {
@@ -68,6 +67,23 @@ async function subscribeUser(callback) {
   return unsubscribe;
 }
 
+async function getUserUId() {
+  if (auth.currentUser != null) {
+    console.log("this here =", auth.currentUser.uid);
+    return auth.currentUser.uid;
+  } else {
+    return null;
+  }
+}
+async function getUserById(id) {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("id", "==", id));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() };
+  });
+}
+
 export {
   getUserByName,
   getUsers,
@@ -75,4 +91,6 @@ export {
   editUser,
   deleteUser,
   subscribeUser,
+  getUserUId,
+  getUserById,
 };

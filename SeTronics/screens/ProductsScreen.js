@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
+  Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLOURS } from "./constants";
@@ -14,6 +15,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/core";
 import AllProductsCard from "../componants/AllProductsCard";
+import { getUserById, getUsers } from "../models/user";
+import { auth } from "../firebase";
+import { getUserUId } from "../models/user";
 import {
   addProduct,
   deleteProduct,
@@ -35,6 +39,27 @@ export default function ProductsScreen() {
 
   useEffect(() => {
     getProductHandle();
+  }, []);
+
+  //for user profile icon
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setname] = useState("");
+  const [image, setimage] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  useEffect(() => {
+    getUserUId().then((id) => {
+      console.log(id);
+      getUserById(id).then((user) => {
+        console.log(user);
+        setEmail(user[0].email);
+        setPassword(user[0].password);
+        setname(user[0].name);
+        setPhoneNumber(user[0].phoneNumber);
+        setimage(user[0].image);
+      });
+    });
   }, []);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -61,12 +86,15 @@ export default function ProductsScreen() {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Sign out</Text>
-        </TouchableOpacity>
+        <View style={{ flexDirection: "column", alignItems: "center" }}>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <Image
+              style={{ height: 50, width: 50, borderRadius: 75 }}
+              source={image}
+            />
+          </TouchableOpacity>
+          <Text>Welcome : {name}</Text>
+        </View>
         <TouchableOpacity>
           <MaterialCommunityIcons
             name="cart"

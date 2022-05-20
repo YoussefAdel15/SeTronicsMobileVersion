@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { signOut } from "firebase/auth";
 import React, { useState, useEffect } from "react";
-import { auth } from "../firebase";
+
 import { useNavigation } from "@react-navigation/core";
 import { async } from "@firebase/util";
 import { COLOURS } from "./constants";
@@ -21,6 +21,9 @@ import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
 import BundleCard from "../componants/BundleCard";
+import { getUserById, getUsers } from "../models/user";
+import { auth } from "../firebase";
+import { getUserUId } from "../models/user";
 import {
   addProduct,
   deleteProduct,
@@ -40,6 +43,8 @@ import {
 } from "../models/bundle";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   // for products
   const [products, setProducts] = useState([]);
 
@@ -68,13 +73,27 @@ const HomeScreen = () => {
     getBundleHandle();
   }, []);
 
-  //buttons (we be removed)
-  const navigation = useNavigation();
-  const handleLogout = async () => {
-    await signOut(auth)
-      .then(() => navigation.navigate("Login"))
-      .catch((error) => alert(error.massage));
-  };
+  //for user profile image
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setname] = useState("");
+  const [image, setimage] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  useEffect(() => {
+    getUserUId().then((id) => {
+      console.log(id);
+      getUserById(id).then((user) => {
+        console.log(user);
+        setEmail(user[0].email);
+        setPassword(user[0].password);
+        setname(user[0].name);
+        setPhoneNumber(user[0].phoneNumber);
+        setimage(user[0].image);
+      });
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={COLOURS.white} barStyle="dark-content" />
@@ -99,12 +118,15 @@ const HomeScreen = () => {
               }}
             />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Profile")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Sign out</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: "column", alignItems: "center" }}>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+              <Image
+                style={{ height: 50, width: 50, borderRadius: 75 }}
+                source={image}
+              />
+            </TouchableOpacity>
+            <Text>Welcome : {name}</Text>
+          </View>
           <TouchableOpacity>
             <MaterialCommunityIcons
               name="cart"
@@ -315,13 +337,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: COLOURS.white,
-  },
-  button: {
-    backgroundColor: "#0782F9",
-    width: "50%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
   },
   buttonText: {
     color: "white",
