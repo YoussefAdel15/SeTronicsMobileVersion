@@ -193,7 +193,7 @@ const HomeScreen = () => {
               navigation.navigate("Products");
             }}
           >
-            SeeAll
+            <Text>SeeAll</Text>
           </TouchableOpacity>
         </View>
         {/* <TouchableOpacity
