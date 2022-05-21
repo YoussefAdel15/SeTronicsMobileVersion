@@ -19,6 +19,7 @@ import { async } from "@firebase/util";
 import { COLOURS } from "./constants";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import ProductCard from "../componants/ProductCard";
 import BundleCard from "../componants/BundleCard";
 import { auth } from "../firebase";
@@ -83,14 +84,17 @@ const AdminArea = () => {
         }}
       >
         <TouchableOpacity>
-          <Entypo
-            name="shopping-bag"
+          <AntDesign
+            name="logout"
             style={{
               fontSize: 18,
               color: COLOURS.backgroundMedium,
               padding: 12,
               borderRadius: 10,
               backgroundColor: COLOURS.backgroundLight,
+            }}
+            onPress={() => {
+              navigation.navigate("Login");
             }}
           />
         </TouchableOpacity>
@@ -111,6 +115,9 @@ const AdminArea = () => {
               color: COLOURS.backgroundMedium,
               padding: 12,
               borderRadius: 10,
+            }}
+            onPress={() => {
+              navigation.navigate("Home");
             }}
           />
         </TouchableOpacity>

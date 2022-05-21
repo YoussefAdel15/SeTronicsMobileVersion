@@ -18,6 +18,7 @@ import { useNavigation } from "@react-navigation/core";
 import { async } from "@firebase/util";
 import { COLOURS } from "./constants";
 import Entypo from "react-native-vector-icons/Entypo";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
 import BundleCard from "../componants/BundleCard";
@@ -87,6 +88,7 @@ const HomeScreen = () => {
   const [name, setname] = useState("");
   const [image, setimage] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     getUserUId().then((id) => {
@@ -98,6 +100,7 @@ const HomeScreen = () => {
         setname(user[0].name);
         setPhoneNumber(user[0].phoneNumber);
         setimage(user[0].image);
+        setRole(user[0].Role);
       });
     });
   }, []);
@@ -114,9 +117,9 @@ const HomeScreen = () => {
             padding: 16,
           }}
         >
-          <TouchableOpacity>
-            <Entypo
-              name="shopping-bag"
+          <View>
+            <AntDesign
+              name="logout"
               style={{
                 fontSize: 18,
                 color: COLOURS.backgroundMedium,
@@ -124,10 +127,21 @@ const HomeScreen = () => {
                 borderRadius: 10,
                 backgroundColor: COLOURS.backgroundLight,
               }}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
             />
-          </TouchableOpacity>
+          </View>
           <View style={{ flexDirection: "column", alignItems: "center" }}>
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <TouchableOpacity
+              onPress={() => {
+                if (role === "Admin") {
+                  navigation.navigate("Admin");
+                } else {
+                  navigation.navigate("Home");
+                }
+              }}
+            >
               <Image
                 style={{ height: 50, width: 50, borderRadius: 75 }}
                 source={image}
@@ -160,7 +174,7 @@ const HomeScreen = () => {
               fontSize: 26,
               color: COLOURS.black,
               fontWeight: "500",
-              textAlign:"center",
+              textAlign: "center",
               letterSpacing: 1,
             }}
           >
@@ -173,7 +187,7 @@ const HomeScreen = () => {
               fontWeight: "400",
               letterSpacing: 1,
               lineHeight: 24,
-              textAlign:"center",
+              textAlign: "center",
             }}
           >
             We Sell everything related to computer hardware
@@ -222,7 +236,10 @@ const HomeScreen = () => {
               fontWeight: "400",
             }}
             onPress={() => {
-              navigation.navigate("Products"  ); {/**"Products" */}
+              navigation.navigate("Products");
+              {
+                /**"Products" */
+              }
             }}
           >
             <Text
