@@ -14,7 +14,7 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
-import { addUser } from "../models/user";
+import { addUser, getUserById, getUserUId } from "../models/user";
 import Entypo from "react-native-vector-icons/Entypo";
 import React, { useState, useEffect, useContext } from "react";
 import { auth } from "../firebase";
@@ -28,13 +28,22 @@ const LoginScreen = () => {
   // const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const signIn = useContext(AuthContext);
   function signInUser() {
     login(email, password)
       .then(() => {
         console.log(email, password);
         console.log("here sign in*");
-        navigation.navigate("Home");
+        getUserUId().then((id) => {
+          getUserById(id).then((user) => {
+            if (user[0].Role === "Admin") {
+              navigation.navigate("Admin");
+            } else {
+              navigation.navigate("Home");
+            }
+          });
+        });
       })
       .catch((e) => {
         alert("invalid email or password");

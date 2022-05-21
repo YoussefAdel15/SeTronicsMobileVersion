@@ -21,9 +21,17 @@ import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../componants/ProductCard";
 import BundleCard from "../componants/BundleCard";
-import { getUserById, getUsers } from "../models/user";
 import { auth } from "../firebase";
-import { getUserUId } from "../models/user";
+import {
+  getUserUId,
+  addUser,
+  deleteUser,
+  editUser,
+  getUserById,
+  getUserByName,
+  getUsers,
+  subscribeUser,
+} from "../models/user";
 import {
   addProduct,
   deleteProduct,

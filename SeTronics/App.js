@@ -9,7 +9,11 @@ import ProfileScreen from "./screens/ProfileScreen.js";
 import ProductsScreen from "./screens/ProductsScreen.js";
 import SignupScreen from "./screens/SignupScreen.js";
 import BundlesScreen from "./screens/BundlesScreen";
-import AboutUsScreen from "./screens/AboutUsScreen"
+import AboutUsScreen from "./screens/AboutUsScreen";
+import AdminArea from "./screens/AdminArea.js";
+import AddProductsScreen from "./screens/AddProductsScreen.js";
+import DeleteProductScreen from "./screens/DeleteProductScreen.js";
+import EditProductScreen from "./screens/EditProductScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +25,26 @@ export default function App() {
           options={{ headerShown: false }}
           name="Login"
           component={LoginScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Admin"
+          component={AdminArea}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AddProduct"
+          component={AddProductsScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="DeleteProduct"
+          component={DeleteProductScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="EditProduct"
+          component={EditProductScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

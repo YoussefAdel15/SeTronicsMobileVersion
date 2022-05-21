@@ -28,7 +28,6 @@ const SignupScreen = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [image, setImage] = useState("");
 
   const navigation = useNavigation();
 
@@ -49,6 +48,7 @@ const SignupScreen = () => {
               name,
               phoneNumber,
               address,
+              Role: "User",
               image:
                 "https://64.media.tumblr.com/d82d24956974272dff1f745a004a43bf/tumblr_o51oavbMDx1ugpbmuo3_540.png",
             });

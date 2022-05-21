@@ -23,6 +23,7 @@ const ProfileScreen = () => {
   const [image, setimage] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [role , setRole] = useState("");
   useEffect(() => {
     getUserUId().then((id) => {
       console.log(id);
@@ -34,18 +35,16 @@ const ProfileScreen = () => {
         setPhoneNumber(user[0].phoneNumber);
         setimage(user[0].image);
         setAddress(user[0].address);
+        setRole(user[0].Role);
       });
     });
   }, []);
 
   const handleDelete = () => {
-    getUserUId().then((id) => {
+    getUserUId().then(async(id) => {
       console.log(id);
-      getUserById(id).then((user) => {
-        console.log(user);
-        deleteUser(user[0]);
-        navigation.navigate("Login");
-      });
+      const object = await getUserById(id);
+      deleteUser(object).then(navigation.navigate("Login")).catch((err)=>{console.log(err.massage)})
     });
   };
   return (
@@ -61,7 +60,11 @@ const ProfileScreen = () => {
             borderRadius: 10,
           }}
           onPress={() => {
-            navigation.navigate("Home");
+            if(role === "Admin"){
+              navigation.navigate("Admin");
+            } else{
+              navigation.navigate("Home");
+            }
           }}
         />
       </TouchableOpacity>

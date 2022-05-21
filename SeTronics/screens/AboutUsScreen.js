@@ -45,7 +45,6 @@ const AboutUsScreen = () => {
             style={styles.userImg}
             source={{
               uri: "https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/275360723_1408917832855006_5894021224660211644_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=P-g2gZR_mRwAX-PHkmi&_nc_ht=scontent.fcai19-4.fna&oh=00_AT-PEcAyDHfgTK1GztYx8PMRNuevaPrWIc0LYolC0pLb4g&oe=628C9592",
-              
             }}
           />
           <Image
@@ -81,7 +80,6 @@ const AboutUsScreen = () => {
             />
           </View>
           <View style={{ alignItems: "center", marginTop: 20 }}>
-            <Text>You can connect with us on gmail</Text>
             <Text>Secondly Baher Sami's Email</Text>
             <Button
               onPress={() => Linking.openURL("mailto:bahersami1907@gmail.com")}
@@ -89,7 +87,6 @@ const AboutUsScreen = () => {
             />
           </View>
           <View style={{ alignItems: "center", marginTop: 20 }}>
-            <Text>You can connect with us on gmail</Text>
             <Text>thirdly Abdelatef Mostafa's Email</Text>
             <Button
               onPress={() =>
