@@ -61,6 +61,7 @@ const EditUserScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [userId, setUserId] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     getUserUId().then((id) => {
@@ -74,6 +75,7 @@ const EditUserScreen = () => {
         setimage(user[0].image);
         setAddress(user[0].address);
         setUserId(user[0].id);
+        setRole(user[0].Role);
       });
     });
   }, []);
@@ -115,7 +117,7 @@ const EditUserScreen = () => {
               backgroundColor: COLOURS.backgroundLight,
             }}
             onPress={() => {
-              navigation.navigate("Admin");
+              navigation.navigate("Profile");
             }}
           />
         </TouchableOpacity>
