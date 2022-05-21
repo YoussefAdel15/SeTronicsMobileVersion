@@ -31,7 +31,7 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
         }}
       >
         <Image
-          style={{ width: 200, height: 150, justifyContent: "flex-start" ,borderRadius:25}}
+          style={{ width: 200, height: 150, justifyContent: "flex-start" ,borderRadius:10}}
           source={image}
         />
         <View style={{ flexDirection: "column", flex: "100%", width: "75%"  }}>
