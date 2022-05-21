@@ -227,14 +227,16 @@ export default function ProductsScreen() {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: COLOURS.backgroundMedium,
-    width: 100,
+    width: 110,
     height: 35,
     borderRadius: 10,
     alignItems: "center",
+    marginRight:10,marginLeft:10,
   },
   buttonText: {
     color: COLOURS.black,
     fontWeight: "700",
     fontSize: 16,
+    padding:5
   },
 });
