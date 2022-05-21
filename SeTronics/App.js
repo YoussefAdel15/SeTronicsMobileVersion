@@ -18,7 +18,7 @@ import EditUserScreen from "./screens/EditUserScreen.js";
 import AddBundlesScreen from "./screens/AddBundleScreen.js";
 import EditBundleScreen from "./screens/EditBundleScreen.js";
 import DeleteBundleScreen from "./screens/DeleteBundleScreen.js";
-// import ProductInfo from "./screens/productinfo.js";
+import ProductInfo from "./screens/productinfo.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -101,11 +101,11 @@ export default function App() {
           name="Bundles"
           component={BundlesScreen}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="Productinfo"
           component={ProductInfo}
-        /> */}
+        />
         
       </Stack.Navigator>
     </NavigationContainer>
