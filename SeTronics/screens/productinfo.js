@@ -20,6 +20,7 @@ import { getProductByName } from "../models/products";
 import { COLOURS } from "./constants";
 
 const ProductInfo = ({ route, Navigation }) => {
+    const navigation = useNavigation();
   const { productName, price, image, details, type } = route.params;
   // const [ProductName , setProductName] = useState("")
   // const [image , setImage] = useState("")
@@ -78,9 +79,12 @@ const ProductInfo = ({ route, Navigation }) => {
                 style={{
                     marginRight:'90%',
                 }}>
-            <TouchableOpacity>
+            <TouchableOpacity 
+            onPress={()=>{
+                navigation.navigate("Products");
+            }} >
               <Entypo
-                name="cheveron-left"
+                name="chevron-thin-left"
                 style={{
                   fontSize: 18,
                   color: COLOURS.backgroundDark,
@@ -231,12 +235,13 @@ const ProductInfo = ({ route, Navigation }) => {
               style={{
                 fontSize: 18,
                 fontWeight: 500,
-                maxWidth: "85%",
+                maxWidth: "100%",
                 color: COLOURS.black,
                 marginBottom: 4,
+                justifyContent:"flex-start"
               }}
             >
-              {price} EGP
+              Price: {price} EGP
             </Text>
             {/* this one is opptional we can make it the delivery taxes or any fuckin thing */}
           </View>
