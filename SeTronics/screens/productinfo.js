@@ -97,18 +97,16 @@ const ProductInfo = ({ route, Navigation }) => {
             style={{
               width: "100%",
               flexDirection: "row",
-            //   justifyContent: "flex-start",
+              justifyContent: "center",
             // alignContent:"flex-start",
               paddingTop: 16,
             //   paddingLeft: 16,
             }}
           >
-              <Image style={{height:500  , width:"100%"}} source={image} />
-            
-            
-
-
-          </View>
+              <Image style={{height:500  , width:"75%"}} source={image} /></View>
+              
+                     
+          
           {/*//the flat list tag is used to make the render faster as the displayed items are the only displayed or rendered others will be rendered when they are scrolled  */}
           {/* <Image source={}/> */}
           <Image source={require("../SeTronics.png")} />
