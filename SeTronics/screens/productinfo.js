@@ -21,6 +21,7 @@ import { COLOURS } from "./constants";
 
 const ProductInfo = ({ route, Navigation }) => {
     const navigation = useNavigation();
+    //sending all the info needed
   const { productName, price, image, details, type,bundleName, specs} = route.params;
   // const [ProductName , setProductName] = useState("")
   // const [image , setImage] = useState("")
