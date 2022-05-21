@@ -64,6 +64,9 @@ export default function ProductsScreen() {
 
   //for getting cattegories
   const [type, setType] = useState("all");
+
+  // for search
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
@@ -130,21 +133,10 @@ export default function ProductsScreen() {
             borderColor: "#C0C0C0",
             borderWidth: 1,
           }}
+          onChangeText={(text) => {
+            setSearchTerm(text);
+          }}
         />
-        <TouchableOpacity>
-          <AntDesign
-            name="search1"
-            style={{
-              paddingVertical: 15,
-              paddingHorizontal: 15,
-              width: 50,
-              backgroundColor: "#fffafa",
-              borderRadius: 60,
-              borderColor: "#C0C0C0",
-              borderWidth: 1,
-            }}
-          />
-        </TouchableOpacity>
       </View>
       <View style={{ padding: 20 }}>
         <FlatList
@@ -170,26 +162,57 @@ export default function ProductsScreen() {
           horizontal={false}
           renderItem={(itemData) => {
             if (itemData.item.type === type) {
-              return (
-                <AllProductsCard
-                  productName={itemData.item.productName}
-                  price={itemData.item.price}
-                  details={itemData.item.details}
-                  type={itemData.item.type}
-                  image={itemData.item.image}
-                />
-              );
-            }
-            if (type === "all") {
-              return (
-                <AllProductsCard
-                  productName={itemData.item.productName}
-                  price={itemData.item.price}
-                  details={itemData.item.details}
-                  type={itemData.item.type}
-                  image={itemData.item.image}
-                />
-              );
+              if (searchTerm === "") {
+                return (
+                  <AllProductsCard
+                    productName={itemData.item.productName}
+                    price={itemData.item.price}
+                    details={itemData.item.details}
+                    type={itemData.item.type}
+                    image={itemData.item.image}
+                  />
+                );
+              } else if (
+                itemData.item.productName
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                return (
+                  <AllProductsCard
+                    productName={itemData.item.productName}
+                    price={itemData.item.price}
+                    details={itemData.item.details}
+                    type={itemData.item.type}
+                    image={itemData.item.image}
+                  />
+                );
+              }
+            } else if (type === "all") {
+              if (searchTerm === "") {
+                return (
+                  <AllProductsCard
+                    productName={itemData.item.productName}
+                    price={itemData.item.price}
+                    details={itemData.item.details}
+                    type={itemData.item.type}
+                    image={itemData.item.image}
+                  />
+                );
+              } else if (
+                itemData.item.productName
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              ) {
+                return (
+                  <AllProductsCard
+                    productName={itemData.item.productName}
+                    price={itemData.item.price}
+                    details={itemData.item.details}
+                    type={itemData.item.type}
+                    image={itemData.item.image}
+                  />
+                );
+              }
             }
           }}
         />
