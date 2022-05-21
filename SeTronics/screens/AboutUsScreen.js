@@ -40,7 +40,11 @@ const AboutUsScreen = () => {
         }}
         showsHorizontalScrollIndicator={false}
       >
+       
         <View style={{ flexDirection: "row" }}>
+          
+        
+
           <Image
             style={styles.userImg}
             source={{
@@ -60,7 +64,21 @@ const AboutUsScreen = () => {
             }}
           />
         </View>
-        <View style={{ marginTop: 50 }}>
+
+        <View 
+            style={{
+              flexDirection:"row"
+              , marginTop:25
+            }}
+          >
+            <Text style={{
+              fontSize:30,
+              marginRight:10
+            }}>SeTronics</Text>
+            <Image style={{width:50, height:50}} source={require("../SeTronics.png")} />
+          </View>
+
+        <View style={{ marginTop: 15 }}>
           <Text>
             We are three students in Faculty Of Science Cairo University
             {"\n"}Our names are Youssef Adel , Abdelatef Mostafa , Baher Sami
