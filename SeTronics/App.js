@@ -15,6 +15,9 @@ import AddProductsScreen from "./screens/AddProductsScreen.js";
 import DeleteProductScreen from "./screens/DeleteProductScreen.js";
 import EditProductScreen from "./screens/EditProductScreen.js";
 import EditUserScreen from "./screens/EditUserScreen.js";
+import AddBundlesScreen from "./screens/AddBundleScreen.js";
+import EditBundleScreen from "./screens/EditBundleScreen.js";
+import DeleteBundleScreen from "./screens/DeleteBundleScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +49,21 @@ export default function App() {
           options={{ headerShown: false }}
           name="EditProduct"
           component={EditProductScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AddBundle"
+          component={AddBundlesScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="EditBundle"
+          component={EditBundleScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="DeleteBundle"
+          component={DeleteBundleScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

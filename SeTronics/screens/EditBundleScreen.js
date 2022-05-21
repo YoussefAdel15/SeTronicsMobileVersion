@@ -51,25 +51,25 @@ import {
 } from "../models/bundle";
 import { doc, setDoc } from "firebase/firestore";
 
-const EditProductScreen = () => {
+const EditBundleScreen = () => {
   const navigation = useNavigation();
   const [oldBundleName, setOldBundleName] = useState("");
-  const [bundleName, setBundleName] = useState("");
+  const [BundleName, setBundleName] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [price, setPrice] = useState("");
   const [Speces, setSpeces] = useState("");
 
   const handleEditProduct = async () => {
-    const object = await getBundleByName(oldProductName);
+    const object = await getBundleByName(oldBundleName);
     console.log(object);
     try {
       setDoc(doc(db, "bundles", object.id), {
-        bundleName,
+        BundleName,
         imageURL,
         price,
         Speces,
       });
-      alert("edit done on Bundle with old Bundle name : " + oldProductName);
+      alert("edit done on Product with old Product name : " + oldBundleName);
     } catch (err) {
       alert(err.massage);
     }
@@ -130,8 +130,8 @@ const EditProductScreen = () => {
           New Data
         </Text>
         <TextInput
-          placeholder="productName"
-          value={productName}
+          placeholder="BundleName"
+          value={BundleName}
           onChangeText={(text) => setBundleName(text)}
           style={styles.input}
         />
@@ -168,7 +168,7 @@ const EditProductScreen = () => {
   );
 };
 
-export default EditProductScreen;
+export default EditBundleScreen;
 
 const styles = StyleSheet.create({
   container: {

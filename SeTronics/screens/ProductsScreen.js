@@ -61,6 +61,9 @@ export default function ProductsScreen() {
       });
     });
   }, []);
+
+  //for getting cattegories
+  const [type, setType] = useState("all");
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
@@ -121,7 +124,7 @@ export default function ProductsScreen() {
           style={{
             paddingVertical: 15,
             paddingHorizontal: 15,
-            width: 400,
+            width: "70%",
             backgroundColor: "#fffafa",
             borderRadius: 60,
             borderColor: "#C0C0C0",
@@ -145,18 +148,49 @@ export default function ProductsScreen() {
       </View>
       <View style={{ padding: 20 }}>
         <FlatList
+          data={["ram", "cpu", "gpu", "case", "cooler", "motherboard", "all"]}
+          horizontal={true}
+          renderItem={(itemData) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  setType(itemData.item);
+                }}
+                style={styles.button}
+              >
+                <Text style={styles.buttonText}>{itemData.item}</Text>
+              </TouchableOpacity>
+            );
+          }}
+        />
+      </View>
+      <View style={{ padding: 20 }}>
+        <FlatList
           data={products}
           horizontal={false}
           renderItem={(itemData) => {
-            return (
-              <AllProductsCard
-                productName={itemData.item.productName}
-                price={itemData.item.price}
-                details={itemData.item.details}
-                type={itemData.item.type}
-                image={itemData.item.image}
-              />
-            );
+            if (itemData.item.type === type) {
+              return (
+                <AllProductsCard
+                  productName={itemData.item.productName}
+                  price={itemData.item.price}
+                  details={itemData.item.details}
+                  type={itemData.item.type}
+                  image={itemData.item.image}
+                />
+              );
+            }
+            if (type === "all") {
+              return (
+                <AllProductsCard
+                  productName={itemData.item.productName}
+                  price={itemData.item.price}
+                  details={itemData.item.details}
+                  type={itemData.item.type}
+                  image={itemData.item.image}
+                />
+              );
+            }
           }}
         />
       </View>
@@ -164,4 +198,17 @@ export default function ProductsScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: COLOURS.backgroundMedium,
+    width: 100,
+    height: 35,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: COLOURS.black,
+    fontWeight: "700",
+    fontSize: 16,
+  },
+});

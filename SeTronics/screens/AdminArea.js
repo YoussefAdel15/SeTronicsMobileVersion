@@ -237,6 +237,9 @@ const AdminArea = () => {
               alignItems: "center",
               marginBottom: 5,
             }}
+            onPress={() => {
+              navigation.navigate("AddBundle");
+            }}
           >
             <Text>Add Bundle</Text>
           </TouchableOpacity>
@@ -249,6 +252,9 @@ const AdminArea = () => {
               borderRadius: 20,
               alignItems: "center",
               marginBottom: 5,
+            }}
+            onPress={() => {
+              navigation.navigate("EditBundle");
             }}
           >
             <Text>Edit Bundle</Text>
@@ -270,6 +276,9 @@ const AdminArea = () => {
               borderRadius: 20,
               alignItems: "center",
               marginBottom: 5,
+            }}
+            onPress={() => {
+              navigation.navigate("DeleteBundle");
             }}
           >
             <Text>Delete Bundle</Text>

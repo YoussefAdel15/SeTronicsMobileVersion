@@ -15,7 +15,7 @@ import { async } from "@firebase/util";
 
 async function getBundleByName(name) {
   const bundleColumn = collection(db, "bundles");
-  const que = query(bundleColumn, where("bundleName", "==", "name"));
+  const que = query(bundleColumn, where("bundleName", "==", name));
   const productSnapShot = await getDocs(que);
   const bundleObject = productSnapShot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
