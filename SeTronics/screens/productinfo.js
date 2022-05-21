@@ -47,15 +47,21 @@ const ProductInfo = ({ route, Navigation }) => {
         position: "relative",
       }}
     >
+        
       {/* getting the navigation routing 
             right now we are calling the products to a view tag in the text tag as we cant display them without a text tag 
             dont forget to change the product ID as we call it differently  */}
       {/* <Text>ProductInfo(ProducctID)</Text> */}
-      <StatusBar
+
+
+      {/* <StatusBar
         backgroundColor={COLOURS.backgroundLight}
         barstyle="dark-content"
-      />
+      /> */}
+          {/* <Image source={image} /> */}
+
       <ScrollView>
+          
         <View
           style={{
             width: "100%",
@@ -68,15 +74,10 @@ const ProductInfo = ({ route, Navigation }) => {
             marginBottom: 4,
           }}
         >
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              paddingTop: 16,
-              paddingLeft: 16,
-            }}
-          >
+            <View 
+                style={{
+                    marginRight:'90%',
+                }}>
             <TouchableOpacity>
               <Entypo
                 name="cheveron-left"
@@ -89,9 +90,28 @@ const ProductInfo = ({ route, Navigation }) => {
                 }}
               />
             </TouchableOpacity>
+            
+            </View>
+            
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+            //   justifyContent: "flex-start",
+            // alignContent:"flex-start",
+              paddingTop: 16,
+            //   paddingLeft: 16,
+            }}
+          >
+              <Image style={{height:500  , width:"100%"}} source={image} />
+            
+            
+
+
           </View>
           {/*//the flat list tag is used to make the render faster as the displayed items are the only displayed or rendered others will be rendered when they are scrolled  */}
-          <Image source={image} />
+          {/* <Image source={}/> */}
+          <Image source={require("../SeTronics.png")} />
           <View
             style={{
               width: "100%",
@@ -109,7 +129,10 @@ const ProductInfo = ({ route, Navigation }) => {
               marginTop: 6,
             }}
           >
-            <View
+
+
+
+            {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -132,7 +155,7 @@ const ProductInfo = ({ route, Navigation }) => {
               >
                 shopping
               </Text>
-            </View>
+            </View> */}
             <View
               style={{
                 flexDirection: "row",
@@ -220,6 +243,7 @@ const ProductInfo = ({ route, Navigation }) => {
             {/* this one is opptional we can make it the delivery taxes or any fuckin thing */}
           </View>
         </View>
+
       </ScrollView>
       <View
         style={{
