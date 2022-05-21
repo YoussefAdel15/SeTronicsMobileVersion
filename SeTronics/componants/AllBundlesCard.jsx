@@ -15,15 +15,15 @@ const AllBundlesCard = ({ bundleName, price, image, speces }) => {
         style={{
           flex: 2,
           flexDirection: "row",
-          height: 150,
-          width: 450,
+          height: '35%',
+          width: '95%',
           justifyContent: "space-evenly",
           backgroundColor: COLOURS.backgroundMedium,
           marginBottom: 10,
         }}
       >
         <Image
-          style={{ width: 200, height: 150, justifyContent: "flex-start" }}
+          style={{ width: 200, height: 150, justifyContent: "flex-start",borderRadius:10 }}
           source={image}
         />
         <View style={{ flexDirection: "column" }}>
@@ -31,6 +31,8 @@ const AllBundlesCard = ({ bundleName, price, image, speces }) => {
             style={{
               fontSize: 14,
               color: COLOURS.black,
+              flex:'100%',
+              width:'75%',
               fontWeight: "400",
               letterSpacing: 1,
               lineHeight: 24,
