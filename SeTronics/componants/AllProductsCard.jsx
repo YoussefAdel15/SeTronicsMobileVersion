@@ -2,7 +2,6 @@ import react, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
-import ProductInfo from "../screens/productinfo";
 
 const AllProductsCard = ({ productName, price, image, details, type }) => {
   const navigation = useNavigation();
@@ -10,7 +9,13 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
     <TouchableOpacity
       onPress={() => {
         // this is the navigation to the productinfo page check
-        navigation.navigate(ProductInfo({productName, price, image, details, type }));
+        navigation.navigate("Productinfo", {
+          productName,
+          price,
+          image,
+          details,
+          type,
+        });
       }}
     >
       <View
@@ -28,7 +33,7 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
           style={{ width: 200, height: 150, justifyContent: "flex-start" }}
           source={image}
         />
-        <View style={{ flexDirection: "column",flex:"100%" ,width:"75%"}}>
+        <View style={{ flexDirection: "column", flex: "100%", width: "75%" }}>
           <Text
             style={{
               fontSize: 15,
