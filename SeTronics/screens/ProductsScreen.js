@@ -138,8 +138,11 @@ export default function ProductsScreen() {
           }}
         />
       </View>
-      <View style={{ padding: 20 }}>
+      <View style={{ padding: 20 ,width:'100%',marginRight:10,marginLeft:10}}>
         <FlatList
+        // style={{
+        //   marginRight:10,marginLeft:10
+        // }}
           data={["ram", "cpu", "gpu", "case", "cooler", "motherboard", "all"]}
           horizontal={true}
           renderItem={(itemData) => {

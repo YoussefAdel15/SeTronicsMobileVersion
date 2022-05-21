@@ -27,13 +27,14 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
           justifyContent: "space-evenly",
           backgroundColor: COLOURS.backgroundMedium,
           marginBottom: 10,
+          borderRadius:10,
         }}
       >
         <Image
-          style={{ width: 200, height: 150, justifyContent: "flex-start" }}
+          style={{ width: 200, height: 150, justifyContent: "flex-start" ,borderRadius:25}}
           source={image}
         />
-        <View style={{ flexDirection: "column", flex: "100%", width: "75%" }}>
+        <View style={{ flexDirection: "column", flex: "100%", width: "75%"  }}>
           <Text
             style={{
               fontSize: 15,
