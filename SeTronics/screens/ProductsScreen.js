@@ -127,7 +127,7 @@ export default function ProductsScreen() {
           style={{
             paddingVertical: 15,
             paddingHorizontal: 15,
-            width: "70%",
+            width: "100%",
             backgroundColor: "#fffafa",
             borderRadius: 60,
             borderColor: "#C0C0C0",

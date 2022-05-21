@@ -160,6 +160,7 @@ const HomeScreen = () => {
               fontSize: 26,
               color: COLOURS.black,
               fontWeight: "500",
+              textAlign:"center",
               letterSpacing: 1,
             }}
           >
@@ -172,6 +173,7 @@ const HomeScreen = () => {
               fontWeight: "400",
               letterSpacing: 1,
               lineHeight: 24,
+              textAlign:"center",
             }}
           >
             We Sell everything related to computer hardware
@@ -220,7 +222,7 @@ const HomeScreen = () => {
               fontWeight: "400",
             }}
             onPress={() => {
-              navigation.navigate("Products");
+              navigation.navigate("Products"  ); {/**"Products" */}
             }}
           >
             <Text

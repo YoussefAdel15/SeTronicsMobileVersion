@@ -8,6 +8,7 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
   return (
     <TouchableOpacity
       onPress={() => {
+        // this is the navigation to the productinfo page check
         navigation.navigate("Login");
       }}
     >
@@ -15,8 +16,8 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
         style={{
           flex: 2,
           flexDirection: "row",
-          height: 150,
-          width: 450,
+          height: "35%",
+          width: "95%",
           justifyContent: "space-evenly",
           backgroundColor: COLOURS.backgroundMedium,
           marginBottom: 10,
@@ -26,7 +27,7 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
           style={{ width: 200, height: 150, justifyContent: "flex-start" }}
           source={image}
         />
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ flexDirection: "column",flex:"100%" ,width:"75%"}}>
           <Text
             style={{
               fontSize: 15,
