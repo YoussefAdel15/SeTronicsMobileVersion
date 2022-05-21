@@ -14,6 +14,7 @@ import AdminArea from "./screens/AdminArea.js";
 import AddProductsScreen from "./screens/AddProductsScreen.js";
 import DeleteProductScreen from "./screens/DeleteProductScreen.js";
 import EditProductScreen from "./screens/EditProductScreen.js";
+import EditUserScreen from "./screens/EditUserScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="Profile"
           component={ProfileScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="EditUser"
+          component={EditUserScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

@@ -23,7 +23,7 @@ const ProfileScreen = () => {
   const [image, setimage] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [role , setRole] = useState("");
+  const [role, setRole] = useState("");
   useEffect(() => {
     getUserUId().then((id) => {
       console.log(id);
@@ -41,10 +41,14 @@ const ProfileScreen = () => {
   }, []);
 
   const handleDelete = () => {
-    getUserUId().then(async(id) => {
+    getUserUId().then(async (id) => {
       console.log(id);
       const object = await getUserById(id);
-      deleteUser(object).then(navigation.navigate("Login")).catch((err)=>{console.log(err.massage)})
+      deleteUser(object)
+        .then(navigation.navigate("Login"))
+        .catch((err) => {
+          console.log(err.massage);
+        });
     });
   };
   return (
@@ -60,9 +64,9 @@ const ProfileScreen = () => {
             borderRadius: 10,
           }}
           onPress={() => {
-            if(role === "Admin"){
+            if (role === "Admin") {
               navigation.navigate("Admin");
-            } else{
+            } else {
               navigation.navigate("Home");
             }
           }}
@@ -111,6 +115,9 @@ const ProfileScreen = () => {
                 fontWeight: "400",
                 letterSpacing: 1,
                 lineHeight: 24,
+              }}
+              onPress={() => {
+                navigation.navigate("EditUser");
               }}
             >
               Edit Your Data
