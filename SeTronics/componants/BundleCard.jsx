@@ -7,7 +7,7 @@ const BundleCard = ({ bundleName, price, image, specs }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Login");
+        navigation.navigate("Productinfo",{bundleName, price, image, specs});
       }}
     >
       <View

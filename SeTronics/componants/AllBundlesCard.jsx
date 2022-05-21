@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
 
-const AllBundlesCard = ({ bundleName, price, image, details, type }) => {
+const AllBundlesCard = ({ bundleName, price, image, speces }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Login");
+        navigation.navigate("Productinfo",{bundleName, price, image, speces});
       }}
     >
       <View

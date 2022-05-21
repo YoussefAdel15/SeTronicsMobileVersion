@@ -21,7 +21,7 @@ import { COLOURS } from "./constants";
 
 const ProductInfo = ({ route, Navigation }) => {
     const navigation = useNavigation();
-  const { productName, price, image, details, type } = route.params;
+  const { productName, price, image, details, type,bundleName, specs} = route.params;
   // const [ProductName , setProductName] = useState("")
   // const [image , setImage] = useState("")
   // const [price , setPrice] = useState("")
@@ -176,6 +176,7 @@ const ProductInfo = ({ route, Navigation }) => {
                 }}
               >
                 {productName}
+                {bundleName}
               </Text>
             </View>
             <Text
@@ -193,6 +194,7 @@ const ProductInfo = ({ route, Navigation }) => {
             >
               {/* change the word description wit hthe word that you name it as the description for each product in the database */}
               {details}
+              {specs}
             </Text>
             <View
               style={{
