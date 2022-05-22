@@ -239,9 +239,6 @@ const HomeScreen = () => {
             }}
             onPress={() => {
               navigation.navigate("Products");
-              {
-                /**"Products" */
-              }
             }}
           >
             <Text

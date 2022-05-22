@@ -72,8 +72,10 @@ export default function ProductsScreen({ route, Navigation }) {
         style={{
           width: "100%",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "center",
+          alignItems: "center",
           padding: 16,
+
         }}
       >
         <TouchableOpacity>
@@ -100,19 +102,6 @@ export default function ProductsScreen({ route, Navigation }) {
           </TouchableOpacity>
           <Text>Welcome : {name}</Text>
         </View>
-        <TouchableOpacity>
-          <MaterialCommunityIcons
-            name="cart"
-            style={{
-              fontSize: 18,
-              color: COLOURS.backgroundMedium,
-              padding: 12,
-              borderRadius: 10,
-              borderWidth: 1,
-              backgroundColor: COLOURS.backgroundLight,
-            }}
-          />
-        </TouchableOpacity>
       </View>
       <View
         style={{

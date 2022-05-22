@@ -54,8 +54,10 @@ import {
 import AllProductsCard from "../componants/AllProductsCard";
 
 const CartScreen = ({ route }) => {
+  const navigation = useNavigation();
+  // const {id} = route.params;
   const [product, setProduct] = useState();
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
   //for user profile
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,6 +72,7 @@ const CartScreen = ({ route }) => {
       let ar = [];
       for (let i = 0; i < userCart.length; i++) {
         const prod = await getProductByID(userCart[i]);
+        setTotal(total + prod.price);
         ar.push(prod);
       }
       // console.log(ar);
@@ -91,6 +94,17 @@ const CartScreen = ({ route }) => {
       });
     });
   }, []);
+
+  const handleDelete = async () => {
+    const arr = await getUsers();
+    const currentUser = arr.find((e) => e.email === auth.currentUser.email);
+    const userCart = currentUser.cart;
+    userCart = userCart.filter((e) => e !== id);
+    editUser({
+      ...currentUser,
+      cart: [...userCart],
+    });
+  };
 
   // const renderProducts = (data, index) => {
   //   return (
@@ -258,7 +272,7 @@ const CartScreen = ({ route }) => {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <MaterialCommunityIcons
               name="chevron-left"
               style={{
@@ -296,6 +310,9 @@ const CartScreen = ({ route }) => {
         </Text>
         <View style={{ paddingHorizontal: 16 }}>
           <FlatList
+            onPress={() => {
+              navigation.navigate("productinfo", { id });
+            }}
             data={ProductInCart}
             horizontal={false}
             renderItem={(itemData) => {
@@ -366,7 +383,7 @@ const CartScreen = ({ route }) => {
                   opacity: 0.8,
                 }}
               >
-                &#8377;{total}.00
+                {total} EGP
               </Text>
             </View>
             <View
@@ -396,7 +413,7 @@ const CartScreen = ({ route }) => {
                   opacity: 0.8,
                 }}
               >
-                &#8377;{total / 20}
+                {total / 20} EGP
               </Text>
             </View>
             <View
@@ -424,7 +441,7 @@ const CartScreen = ({ route }) => {
                   color: COLOURS.black,
                 }}
               >
-                &#8377;{total + total / 20}
+                {total + total / 20} EGP
               </Text>
             </View>
           </View>
@@ -460,7 +477,7 @@ const CartScreen = ({ route }) => {
               textTransform: "uppercase",
             }}
           >
-            CHECKOUT (&#8377;{total + total / 20})
+            CHECKOUT ({total + total / 20}) EGP
           </Text>
         </TouchableOpacity>
       </View>

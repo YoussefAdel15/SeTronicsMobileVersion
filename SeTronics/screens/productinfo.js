@@ -61,6 +61,7 @@ const ProductInfo = ({ route, Navigation }) => {
   }, []);
   // const [cart,setCart] = useState('');
   const handleAdd = () => {
+    console.log(id)
     editUser({
       ...user,
       cart: [...userCart, id],
@@ -83,6 +84,18 @@ const ProductInfo = ({ route, Navigation }) => {
   // useEffect(() => {
   //     getData();
   //   }, []);
+
+  const handleDelete = async () => {
+    // navigation.navigate("Cart");
+    var userCart = user.cart;
+    userCart = userCart.filter((e) => e !== id);
+    console.log(id)
+    console.log(userCart);
+    editUser({
+      ...user,
+      cart: userCart,
+    });
+  };
 
   return (
     <View
@@ -151,7 +164,15 @@ const ProductInfo = ({ route, Navigation }) => {
               //   paddingLeft: 16,
             }}
           >
-            <Image style={{ height: 500, width: "75%" }} source={image} />
+            <Image
+              style={{
+                height: 500,
+                width: "75%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              source={image}
+            />
           </View>
 
           {/*//the flat list tag is used to make the render faster as the displayed items are the only displayed or rendered others will be rendered when they are scrolled  */}
@@ -303,7 +324,7 @@ const ProductInfo = ({ route, Navigation }) => {
         <TouchableOpacity
           // onPress={()=> {/** addToCart(product.id)} */}
           onPress={() => {
-            navigation.navigate("Cart");
+            handleAdd();
           }}
           style={{
             width: "86%",
@@ -324,6 +345,43 @@ const ProductInfo = ({ route, Navigation }) => {
             }}
           >
             {"Add to cart"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          position: "relative",
+          bottom: 10,
+          height: "8%",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {/* this once to be avilable to the customer to add the product to the cart to procced the sale or it tells the customer that out of stock  */}
+        <TouchableOpacity
+          // onPress={()=> {/** addToCart(product.id)} */}
+          onPress={() => handleDelete()}
+          style={{
+            width: "86%",
+            height: "90%",
+            backgroundColor: COLOURS.red,
+            borderRadius: 20,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: "500",
+              letterSpacing: 1,
+              color: COLOURS.white,
+              textTransform: "uppercase",
+            }}
+          >
+            {"Remove from cart"}
           </Text>
         </TouchableOpacity>
       </View>
