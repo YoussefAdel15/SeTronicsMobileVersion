@@ -303,81 +303,6 @@ const CartScreen = ({ route }) => {
               marginVertical: 10,
             }}
           >
-            <Text
-              style={{
-                fontSize: 16,
-                color: COLOURS.black,
-                fontWeight: "500",
-                letterSpacing: 1,
-                marginBottom: 20,
-              }}
-            >
-              Payment Method
-            </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  width: "80%",
-                  alignItems: "center",
-                }}
-              >
-                <View
-                  style={{
-                    color: COLOURS.blue,
-                    backgroundColor: COLOURS.backgroundLight,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 12,
-                    borderRadius: 100,
-                    marginRight: 18,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      fontWeight: "900",
-                      color: COLOURS.blue,
-                      letterSpacing: 1,
-                    }}
-                  >
-                    VISA
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: COLOURS.black,
-                      fontWeight: "500",
-                    }}
-                  >
-                    Visa Classic
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 12,
-                      color: COLOURS.black,
-                      fontWeight: "400",
-                      lineHeight: 20,
-                      opacity: 0.5,
-                    }}
-                  >
-                    **********-9643
-                  </Text>
-                </View>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                style={{ fontSize: 22, color: COLOURS.black }}
-              />
-            </View>
           </View>
           <View
             style={{
@@ -405,6 +330,14 @@ const CartScreen = ({ route }) => {
                 marginBottom: 8,
               }}
             >
+
+            {/* Here the the order type here */}
+
+
+
+
+
+
               <Text
                 style={{
                   fontSize: 12,
