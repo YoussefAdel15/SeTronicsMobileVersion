@@ -47,6 +47,7 @@ import {
   addbundle,
   deletebundle,
   editbundle,
+  getBundleByID,
   getBundleByName,
   getbundles,
   subscribebundle,
@@ -68,14 +69,20 @@ const CartScreen = ({ route }) => {
   const [userCart, setUserCart] = useState([]);
   const [user, setUser] = useState();
   const [ProductInCart, setProductInCart] = useState();
-  
+
   useEffect(() => {
     (async () => {
       let ar = [];
+      let prod;
       for (let i = 0; i < userCart.length; i++) {
-        const prod = await getProductByID(userCart[i]);
+        if (await getProductByID(userCart[i])) {
+          prod = await getProductByID(userCart[i]);
+          ar.push(prod);
+        } else {
+          prod = await getBundleByID(userCart[i]);
+          ar.push(prod);
+        }
         setTotal(total + prod.price);
-        ar.push(prod);
       }
       // console.log(ar);
       setProductInCart(ar);

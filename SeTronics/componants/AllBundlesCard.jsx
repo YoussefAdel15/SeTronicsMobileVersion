@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
 
-const AllBundlesCard = ({ bundleName, price, image, speces, Type, id }) => {
+const AllBundlesCard = ({ bundleName, price, image, specs, Type, id }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -12,7 +12,7 @@ const AllBundlesCard = ({ bundleName, price, image, speces, Type, id }) => {
           bundleName,
           price,
           image,
-          speces,
+          specs,
           Type,
           id,
         });
@@ -23,10 +23,11 @@ const AllBundlesCard = ({ bundleName, price, image, speces, Type, id }) => {
           flex: 2,
           flexDirection: "row",
           height: "35%",
-          width: "95%",
-          // justifyContent: "space-evenly",
+          width: "95% ",
+          justifyContent: "space-evenly",
           backgroundColor: COLOURS.backgroundMedium,
           marginBottom: 10,
+          borderRadius: 10,
         }}
       >
         <Image

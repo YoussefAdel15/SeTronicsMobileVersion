@@ -10,6 +10,7 @@ import {
   onSnapshot,
   orderBy,
   where,
+  getDoc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 
@@ -21,6 +22,14 @@ async function getBundleByName(name) {
     return { id: doc.id, ...doc.data() };
   });
   return bundleObject[0];
+}
+
+async function getBundleByID(id) {
+  console.log("get id", id);
+  const collec = collection(db, "bundles");
+  const mdoc = doc(db, "bundles", id);
+  const doc_ref = await getDoc(mdoc);
+  return doc_ref.data();
 }
 
 async function getbundles() {
@@ -78,4 +87,5 @@ export {
   editbundle,
   deletebundle,
   subscribebundle,
+  getBundleByID,
 };

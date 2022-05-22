@@ -54,7 +54,7 @@ const AddBundlesScreen = () => {
   const navigation = useNavigation();
   const [BundleName, setBundleName] = useState("");
   const [imageURL, setImageURL] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [Speces, setSpeces] = useState("");
   const [Type , setType] =useState("Bundle")
 

@@ -61,11 +61,12 @@ const ProductInfo = ({ route, Navigation }) => {
   }, []);
   // const [cart,setCart] = useState('');
   const handleAdd = () => {
-    console.log(id)
+    console.log(id);
     editUser({
       ...user,
       cart: [...userCart, id],
     });
+    alert("Product Added to Cart");
   };
 
   // const [ProductName , setProductName] = useState("")
@@ -89,12 +90,13 @@ const ProductInfo = ({ route, Navigation }) => {
     // navigation.navigate("Cart");
     var userCart = user.cart;
     userCart = userCart.filter((e) => e !== id);
-    console.log(id)
+    console.log(id);
     console.log(userCart);
     editUser({
       ...user,
       cart: userCart,
     });
+    alert("Product Deleted From Cart");
   };
 
   return (

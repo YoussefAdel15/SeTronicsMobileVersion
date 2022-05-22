@@ -141,7 +141,8 @@ export default function BundesScreen({ route, Navigation }) {
                 bundleName={itemData.item.bundleName}
                 price={itemData.item.price}
                 image={itemData.item.image}
-                Type={itemData.item.image}
+                Type={itemData.item.Type}
+                specs={itemData.item.specs}
                 id={itemData.item.id}
               />
             );
