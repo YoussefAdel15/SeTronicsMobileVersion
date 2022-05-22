@@ -22,7 +22,9 @@ import { COLOURS } from "./constants";
 const ProductInfo = ({ route, Navigation }) => {
     const navigation = useNavigation();
     //sending all the info needed
-  const { productName, price, image, details, type,bundleName, specs} = route.params;
+  const { productName, price, image, details, type,bundleName, specs , Type } = route.params;
+  // const [cart,setCart] = useState('');
+
   // const [ProductName , setProductName] = useState("")
   // const [image , setImage] = useState("")
   // const [price , setPrice] = useState("")
@@ -82,7 +84,9 @@ const ProductInfo = ({ route, Navigation }) => {
                 }}>
             <TouchableOpacity 
             onPress={()=>{
-                navigation.navigate("Products");
+              if(Type === "Bundle")
+                navigation.navigate("Bundles");
+                else navigation.navigate("Products");
             }} >
               <Entypo
                 name="chevron-thin-left"
@@ -264,7 +268,8 @@ const ProductInfo = ({ route, Navigation }) => {
         {/* this once to be avilable to the customer to add the product to the cart to procced the sale or it tells the customer that out of stock  */}
         <TouchableOpacity
           // onPress={()=> {/** addToCart(product.id)} */}
-          onPress={() => {}}
+          onPress={() =>{}
+        }
           style={{
             width: "86%",
             height: "90%",

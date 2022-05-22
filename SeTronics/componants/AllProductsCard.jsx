@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
 
-const AllProductsCard = ({ productName, price, image, details, type }) => {
+const AllProductsCard = ({ productName, price, image, details, type  }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -15,6 +15,7 @@ const AllProductsCard = ({ productName, price, image, details, type }) => {
           image,
           details,
           type,
+          // arrayCart
         });
       }}
     >

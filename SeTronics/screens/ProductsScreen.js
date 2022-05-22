@@ -27,11 +27,10 @@ import {
   subscribeProduct,
 } from "../models/products";
 
-export default function ProductsScreen() {
+export default function ProductsScreen({ route, Navigation }) {
   const arr = [];
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
-
   const getProductHandle = async () => {
     const arr = await getProducts();
     setProducts(arr);

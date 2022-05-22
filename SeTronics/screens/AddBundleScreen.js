@@ -56,6 +56,7 @@ const AddBundlesScreen = () => {
   const [imageURL, setImageURL] = useState("");
   const [price, setPrice] = useState("");
   const [Speces, setSpeces] = useState("");
+  const [Type , setType] =useState("Bundle")
 
   const handleAddBundle = () => {
     addbundle({
@@ -63,6 +64,7 @@ const AddBundlesScreen = () => {
       imageURL,
       price,
       Speces,
+      Type
     });
     alert("Bundle Added with Bundle Name : " + BundleName);
   };

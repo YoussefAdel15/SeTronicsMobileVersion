@@ -53,7 +53,6 @@ import {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-
   // for products
   const [products, setProducts] = useState([]);
 
@@ -160,6 +159,7 @@ const HomeScreen = () => {
                 borderWidth: 1,
                 backgroundColor: COLOURS.backgroundLight,
               }}
+              onPress={()=>{navigation.navigate("Cart")}}
             />
           </TouchableOpacity>
         </View>
@@ -269,7 +269,7 @@ const HomeScreen = () => {
         {/* products */}
         <View style={{ paddingLeft: 20 }}>
           <FlatList
-            data={products.slice(0, 2)}
+            data={products.slice(0, 9)}
             horizontal={true}
             renderItem={(itemData) => {
               return (
@@ -279,6 +279,7 @@ const HomeScreen = () => {
                   details={itemData.item.details}
                   type={itemData.item.type}
                   image={itemData.item.image}
+                  // arrayCart={arrayCart}
                 />
               );
             }}
@@ -347,6 +348,8 @@ const HomeScreen = () => {
                   price={itemData.item.price}
                   specs={itemData.item.specs}
                   image={itemData.item.image}
+                  Type={itemData.item.Type}
+                  // arrayCart={arrayCart}
                 />
               );
             }}

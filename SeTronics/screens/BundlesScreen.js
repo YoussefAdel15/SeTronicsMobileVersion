@@ -27,11 +27,10 @@ import {
   subscribebundle,
 } from "../models/bundle";
 
-export default function BundesScreen() {
+export default function BundesScreen({ route, Navigation }) {
   const arr = [];
   const navigation = useNavigation();
   const [bundles, setBundles] = useState([]);
-
   const getBundleHandle = async () => {
     const arr = await getbundles();
     setBundles(arr);
@@ -153,6 +152,7 @@ export default function BundesScreen() {
                 bundleName={itemData.item.bundleName}
                 price={itemData.item.price}
                 image={itemData.item.image}
+                Type = {itemData.item.image}
               />
             );
           }}
