@@ -40,11 +40,7 @@ const AboutUsScreen = () => {
         }}
         showsHorizontalScrollIndicator={false}
       >
-       
         <View style={{ flexDirection: "row" }}>
-          
-        
-
           <Image
             style={styles.userImg}
             source={{
@@ -65,18 +61,25 @@ const AboutUsScreen = () => {
           />
         </View>
 
-        <View 
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: 25,
+          }}
+        >
+          <Text
             style={{
-              flexDirection:"row"
-              , marginTop:25
+              fontSize: 30,
+              marginRight: 10,
             }}
           >
-            <Text style={{
-              fontSize:30,
-              marginRight:10
-            }}>SeTronics</Text>
-            <Image style={{width:50, height:50}} source={require("../SeTronics.png")} />
-          </View>
+            SeTronics
+          </Text>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={require("../SeTronics.png")}
+          />
+        </View>
 
         <View style={{ marginTop: 15 }}>
           <Text>
@@ -108,9 +111,9 @@ const AboutUsScreen = () => {
             <Text>thirdly Abdelatef Mostafa's Email</Text>
             <Button
               onPress={() =>
-                Linking.openURL("mailto:youssefadel22022@gmail.com")
+                Linking.openURL("mailto:abdelatefmostafa06@gmail.com")
               }
-              title="youssefadel22022@gmail.com"
+              title="abdelatefmostafa06@gmail.com"
             />
           </View>
         </View>

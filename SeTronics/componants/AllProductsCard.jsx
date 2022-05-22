@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
 
-const AllProductsCard = ({ productName, price, image, details, type  }) => {
+const AllProductsCard = ({ productName, price, image, details, type, id }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -15,6 +15,7 @@ const AllProductsCard = ({ productName, price, image, details, type  }) => {
           image,
           details,
           type,
+          id,
           // arrayCart
         });
       }}
@@ -28,14 +29,19 @@ const AllProductsCard = ({ productName, price, image, details, type  }) => {
           justifyContent: "space-evenly",
           backgroundColor: COLOURS.backgroundMedium,
           marginBottom: 10,
-          borderRadius:10,
+          borderRadius: 10,
         }}
       >
         <Image
-          style={{ width: 200, height: 150, justifyContent: "flex-start" ,borderRadius:10}}
+          style={{
+            width: 200,
+            height: 150,
+            justifyContent: "flex-start",
+            borderRadius: 10,
+          }}
           source={image}
         />
-        <View style={{ flexDirection: "column", flex: "100%", width: "75%"  }}>
+        <View style={{ flexDirection: "column", flex: "100%", width: "75%" }}>
           <Text
             style={{
               fontSize: 15,

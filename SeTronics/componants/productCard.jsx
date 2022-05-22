@@ -2,12 +2,22 @@ import react, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
-const ProductCard = ({ productName, price, image, details, type }) => {
+const ProductCard = ({ productName, price, image, details, type, id }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Productinfo",{productName, price, image, details, type }); {/**Login */}
+        navigation.navigate("Productinfo", {
+          productName,
+          price,
+          image,
+          details,
+          type,
+          id,
+        });
+        {
+          /**Login */
+        }
       }}
     >
       <View

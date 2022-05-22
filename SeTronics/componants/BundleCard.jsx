@@ -2,14 +2,20 @@ import react, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
-
-//we send the needed bundle info to show them in the screen and the array to hold the needed items to sell 
-const BundleCard = ({ bundleName, price, image, specs , Type  }) => {
+//we send the needed bundle info to show them in the screen and the array to hold the needed items to sell
+const BundleCard = ({ bundleName, price, image, specs, Type, id }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Productinfo",{bundleName, price, image, specs , Type });
+        navigation.navigate("Productinfo", {
+          bundleName,
+          price,
+          image,
+          specs,
+          Type,
+          id,
+        });
       }}
     >
       <View

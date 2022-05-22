@@ -107,12 +107,11 @@ export default function App() {
           name="Productinfo"
           component={ProductInfo}
         />
-         <Stack.Screen
+        <Stack.Screen
           options={{ headerShown: false }}
           name="Cart"
           component={MyCart}
         />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );

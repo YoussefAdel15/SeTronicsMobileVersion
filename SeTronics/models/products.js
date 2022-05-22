@@ -10,12 +10,27 @@ import {
   onSnapshot,
   orderBy,
   where,
+  getDoc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 
 async function getProductByName(name) {
   const productsColumn = collection(db, "products");
   const que = query(productsColumn, where("productName", "==", name));
+  const productSnapShot = await getDocs(que);
+  const productObject = productSnapShot.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() };
+  });
+  return productObject[0];
+}
+async function getProductByID(id) {
+  console.log("get id", id);
+  const collec = collection(db, "products");
+  const mdoc = doc(db, "products", id);
+  const doc_ref = await getDoc(mdoc);
+  return doc_ref.data();
+  // const productsColumn = collection(db, "products").doc(id);
+  // return .doc(id).get();
   const productSnapShot = await getDocs(que);
   const productObject = productSnapShot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
@@ -78,4 +93,5 @@ export {
   editProduct,
   deleteProduct,
   subscribeProduct,
+  getProductByID,
 };

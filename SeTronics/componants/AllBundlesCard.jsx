@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { COLOURS } from "../screens/constants";
 
-const AllBundlesCard = ({ bundleName, price, image, speces, Type }) => {
+const AllBundlesCard = ({ bundleName, price, image, speces, Type, id }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -14,7 +14,7 @@ const AllBundlesCard = ({ bundleName, price, image, speces, Type }) => {
           image,
           speces,
           Type,
-          
+          id,
         });
       }}
     >
