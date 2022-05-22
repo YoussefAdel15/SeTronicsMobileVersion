@@ -33,7 +33,7 @@ async function getUsers() {
 
 async function addUser(object) {
   try {
-    await addDoc(collection(db, "users", object.id), object);
+    await setDoc(doc(db, "users", object.id), object);
   } catch (error) {
     console.log(error.massage);
   }
