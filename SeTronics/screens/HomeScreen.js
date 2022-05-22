@@ -137,7 +137,7 @@ const HomeScreen = () => {
                 if (role === "Admin") {
                   navigation.navigate("Admin");
                 } else {
-                  navigation.navigate("Home");
+                  navigation.navigate("Profile");
                 }
               }}
             >
@@ -159,7 +159,9 @@ const HomeScreen = () => {
                 borderWidth: 1,
                 backgroundColor: COLOURS.backgroundLight,
               }}
-              onPress={()=>{navigation.navigate("Cart")}}
+              onPress={() => {
+                navigation.navigate("Cart");
+              }}
             />
           </TouchableOpacity>
         </View>
@@ -279,6 +281,7 @@ const HomeScreen = () => {
                   details={itemData.item.details}
                   type={itemData.item.type}
                   image={itemData.item.image}
+                  id={itemData.item.id}
                   // arrayCart={arrayCart}
                 />
               );
@@ -349,6 +352,7 @@ const HomeScreen = () => {
                   specs={itemData.item.specs}
                   image={itemData.item.image}
                   Type={itemData.item.Type}
+                  id={itemData.item.id}
                   // arrayCart={arrayCart}
                 />
               );

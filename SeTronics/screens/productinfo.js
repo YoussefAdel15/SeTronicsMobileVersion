@@ -14,16 +14,58 @@ import {
 } from "react-native";
 
 import Entypo from "react-native-vector-icons/Entypo";
+import { auth } from "../firebase";
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 // import { ToastAndroid } from 'react-native-web';
 import { getProductByName } from "../models/products";
+import { editUser, getUserById, getUsers, getUserUId } from "../models/user";
 import { COLOURS } from "./constants";
 
 const ProductInfo = ({ route, Navigation }) => {
-    const navigation = useNavigation();
-    //sending all the info needed
-  const { productName, price, image, details, type,bundleName, specs , Type } = route.params;
+  const navigation = useNavigation();
+  //sending all the info needed
+  const {
+    productName,
+    price,
+    image,
+    details,
+    type,
+    bundleName,
+    specs,
+    Type,
+    id,
+  } = route.params;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [role, setRole] = useState("");
+  const [userCart, setUserCart] = useState([]);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    getUserUId().then((id) => {
+      console.log(id);
+      getUserById(id).then((user) => {
+        console.log(user);
+        setEmail(user[0].email);
+        setPassword(user[0].password);
+        setname(user[0].name);
+        setPhoneNumber(user[0].phoneNumber);
+        setRole(user[0].Role);
+        setUserCart(user[0].cart);
+        setUser(user[0]);
+      });
+    });
+  }, []);
   // const [cart,setCart] = useState('');
+  const handleAdd = () => {
+    editUser({
+      ...user,
+      cart: [...userCart, id],
+    });
+  };
 
   // const [ProductName , setProductName] = useState("")
   // const [image , setImage] = useState("")
@@ -51,21 +93,18 @@ const ProductInfo = ({ route, Navigation }) => {
         position: "relative",
       }}
     >
-        
       {/* getting the navigation routing 
             right now we are calling the products to a view tag in the text tag as we cant display them without a text tag 
             dont forget to change the product ID as we call it differently  */}
       {/* <Text>ProductInfo(ProducctID)</Text> */}
 
-
       {/* <StatusBar
         backgroundColor={COLOURS.backgroundLight}
         barstyle="dark-content"
       /> */}
-          {/* <Image source={image} /> */}
+      {/* <Image source={image} /> */}
 
       <ScrollView>
-          
         <View
           style={{
             width: "100%",
@@ -78,16 +117,17 @@ const ProductInfo = ({ route, Navigation }) => {
             marginBottom: 4,
           }}
         >
-            <View 
-                style={{
-                    marginRight:'90%',
-                }}>
-            <TouchableOpacity 
-            onPress={()=>{
-              if(Type === "Bundle")
-                navigation.navigate("Bundles");
+          <View
+            style={{
+              marginRight: "90%",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                if (Type === "Bundle") navigation.navigate("Bundles");
                 else navigation.navigate("Products");
-            }} >
+              }}
+            >
               <Entypo
                 name="chevron-thin-left"
                 style={{
@@ -99,23 +139,21 @@ const ProductInfo = ({ route, Navigation }) => {
                 }}
               />
             </TouchableOpacity>
-            
-            </View>
-            
+          </View>
+
           <View
             style={{
               width: "100%",
               flexDirection: "row",
               justifyContent: "center",
-            // alignContent:"flex-start",
+              // alignContent:"flex-start",
               paddingTop: 16,
-            //   paddingLeft: 16,
+              //   paddingLeft: 16,
             }}
           >
-              <Image style={{height:500  , width:"75%"}} source={image} /></View>
-              
-                     
-          
+            <Image style={{ height: 500, width: "75%" }} source={image} />
+          </View>
+
           {/*//the flat list tag is used to make the render faster as the displayed items are the only displayed or rendered others will be rendered when they are scrolled  */}
           {/* <Image source={}/> */}
           <Image source={require("../SeTronics.png")} />
@@ -136,9 +174,6 @@ const ProductInfo = ({ route, Navigation }) => {
               marginTop: 6,
             }}
           >
-
-
-
             {/* <View
               style={{
                 flexDirection: "row",
@@ -245,7 +280,7 @@ const ProductInfo = ({ route, Navigation }) => {
                 maxWidth: "100%",
                 color: COLOURS.black,
                 marginBottom: 4,
-                justifyContent:"flex-start"
+                justifyContent: "flex-start",
               }}
             >
               Price: {price} EGP
@@ -253,7 +288,6 @@ const ProductInfo = ({ route, Navigation }) => {
             {/* this one is opptional we can make it the delivery taxes or any fuckin thing */}
           </View>
         </View>
-
       </ScrollView>
       <View
         style={{
@@ -268,8 +302,9 @@ const ProductInfo = ({ route, Navigation }) => {
         {/* this once to be avilable to the customer to add the product to the cart to procced the sale or it tells the customer that out of stock  */}
         <TouchableOpacity
           // onPress={()=> {/** addToCart(product.id)} */}
-          onPress={() =>{}
-        }
+          onPress={() => {
+            navigation.navigate("Cart");
+          }}
           style={{
             width: "86%",
             height: "90%",

@@ -137,11 +137,13 @@ export default function ProductsScreen({ route, Navigation }) {
           }}
         />
       </View>
-      <View style={{ padding: 20 ,width:'100%',marginRight:10,marginLeft:10}}>
+      <View
+        style={{ padding: 20, width: "100%", marginRight: 10, marginLeft: 10 }}
+      >
         <FlatList
-        // style={{
-        //   marginRight:10,marginLeft:10
-        // }}
+          // style={{
+          //   marginRight:10,marginLeft:10
+          // }}
           data={["ram", "cpu", "gpu", "case", "cooler", "motherboard", "all"]}
           horizontal={true}
           renderItem={(itemData) => {
@@ -172,6 +174,7 @@ export default function ProductsScreen({ route, Navigation }) {
                     details={itemData.item.details}
                     type={itemData.item.type}
                     image={itemData.item.image}
+                    id={itemData.item.id}
                   />
                 );
               } else if (
@@ -186,6 +189,7 @@ export default function ProductsScreen({ route, Navigation }) {
                     details={itemData.item.details}
                     type={itemData.item.type}
                     image={itemData.item.image}
+                    id={itemData.item.id}
                   />
                 );
               }
@@ -198,6 +202,7 @@ export default function ProductsScreen({ route, Navigation }) {
                     details={itemData.item.details}
                     type={itemData.item.type}
                     image={itemData.item.image}
+                    id={itemData.item.id}
                   />
                 );
               } else if (
@@ -212,6 +217,7 @@ export default function ProductsScreen({ route, Navigation }) {
                     details={itemData.item.details}
                     type={itemData.item.type}
                     image={itemData.item.image}
+                    id={itemData.item.id}
                   />
                 );
               }
@@ -230,12 +236,13 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 10,
     alignItems: "center",
-    marginRight:10,marginLeft:10,
+    marginRight: 10,
+    marginLeft: 10,
   },
   buttonText: {
     color: COLOURS.black,
     fontWeight: "700",
     fontSize: 16,
-    padding:5
+    padding: 5,
   },
 });
