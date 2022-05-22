@@ -52,6 +52,7 @@ import {
   subscribebundle,
 } from "../models/bundle";
 import AllProductsCard from "../componants/AllProductsCard";
+import { addOrder } from "../models/order";
 
 const CartScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -67,6 +68,7 @@ const CartScreen = ({ route }) => {
   const [userCart, setUserCart] = useState([]);
   const [user, setUser] = useState();
   const [ProductInCart, setProductInCart] = useState();
+  
   useEffect(() => {
     (async () => {
       let ar = [];
@@ -104,6 +106,16 @@ const CartScreen = ({ route }) => {
       ...currentUser,
       cart: [...userCart],
     });
+  };
+
+  const handleCheckOut = () => {
+    addOrder({ user: auth.currentUser.email, ProductInCart }).then(() => {
+      editUser({
+        ...user,
+        cart: [],
+      });
+    });
+    alert("Order Sent");
   };
 
   // const renderProducts = (data, index) => {
@@ -451,14 +463,14 @@ const CartScreen = ({ route }) => {
         style={{
           position: "absolute",
           bottom: 10,
-          height: "8%",
+          height: "15%",
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <TouchableOpacity
-          onPress={() => (total != 0 ? checkOut() : null)}
+          onPress={() => (total != 0 ? handleCheckOut() : null)}
           style={{
             width: "86",
             height: "90",
