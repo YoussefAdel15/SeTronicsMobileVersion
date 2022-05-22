@@ -16,6 +16,19 @@ const AllBundlesCard = ({ bundleName, price, image, specs, Type, id }) => {
           Type,
           id,
         });
+        console.log(
+          bundleName,
+          " ",
+          price,
+          " ",
+          image,
+          " ",
+          specs,
+          " ",
+          Type,
+          " ",
+          id
+        );
       }}
     >
       <View
