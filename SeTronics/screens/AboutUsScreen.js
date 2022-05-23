@@ -117,6 +117,35 @@ const AboutUsScreen = () => {
             />
           </View>
         </View>
+        <View style={{
+          marginTop:'5%',
+        }}>
+          <Image 
+            style={styles.userImg}
+            source={require("../King.jpeg")}
+            
+            />
+        </View>
+        <View style={{
+          alignItems:"center"
+        }}>
+          <Text 
+            style={{
+              fontWeight:500,
+              fontSize:30
+            }}
+          >
+            The app was supervised by the KING 👑
+          </Text>
+          <Text style={{
+              fontWeight:500,
+              fontSize:30,
+              alignItems:"center",
+              justifyContent:"space-between"
+            }}>
+              AbdelGhany
+          </Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
