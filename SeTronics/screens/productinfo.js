@@ -87,7 +87,6 @@ const ProductInfo = ({ route, Navigation }) => {
   //   }, []);
 
   const handleDelete = async () => {
-    // navigation.navigate("Cart");
     var userCart = user.cart;
     userCart = userCart.filter((e) => e !== id);
     console.log(id);

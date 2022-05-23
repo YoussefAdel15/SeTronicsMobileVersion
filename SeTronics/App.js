@@ -20,6 +20,7 @@ import EditBundleScreen from "./screens/EditBundleScreen.js";
 import DeleteBundleScreen from "./screens/DeleteBundleScreen.js";
 import ProductInfo from "./screens/productinfo.js";
 import MyCart from "./screens/CartScreen.js";
+import OrdersScreen from "./screens/OrdersScreen"
 
 const Stack = createNativeStackNavigator();
 
@@ -66,6 +67,11 @@ export default function App() {
           options={{ headerShown: false }}
           name="DeleteBundle"
           component={DeleteBundleScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Orders"
+          component={OrdersScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

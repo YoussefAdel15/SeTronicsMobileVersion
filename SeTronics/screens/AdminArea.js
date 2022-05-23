@@ -326,6 +326,7 @@ const AdminArea = () => {
               alignItems: "center",
               marginBottom: 5,
             }}
+            onPress={()=>{navigation.navigate("Orders")}}
           >
             <Text>See Orders</Text>
           </TouchableOpacity>

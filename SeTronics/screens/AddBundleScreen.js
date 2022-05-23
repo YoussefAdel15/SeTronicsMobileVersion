@@ -52,21 +52,21 @@ import {
 
 const AddBundlesScreen = () => {
   const navigation = useNavigation();
-  const [BundleName, setBundleName] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [price, setPrice] = useState();
-  const [Speces, setSpeces] = useState("");
-  const [Type , setType] =useState("Bundle")
+  const [bundleName, setBundleName] = useState("");
+  const [image, setImageURL] = useState("");
+  const [price, setPrice] = useState(0);
+  const [specs, setSpeces] = useState("");
+  const [Type, setType] = useState("Bundle");
 
   const handleAddBundle = () => {
     addbundle({
-      BundleName,
-      imageURL,
+      bundleName,
+      image,
       price,
-      Speces,
-      Type
+      specs,
+      Type,
     });
-    alert("Bundle Added with Bundle Name : " + BundleName);
+    alert("Bundle Added with Bundle Name : " + bundleName);
   };
   return (
     <View style={styles.container} behavior={"padding"}>
@@ -98,13 +98,13 @@ const AddBundlesScreen = () => {
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="BundleName"
-          value={BundleName}
+          value={bundleName}
           onChangeText={(text) => setBundleName(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="ImageURL"
-          value={imageURL}
+          value={image}
           onChangeText={(text) => setImageURL(text)}
           style={styles.input}
         />
@@ -116,7 +116,7 @@ const AddBundlesScreen = () => {
         />
         <TextInput
           placeholder="Speces"
-          value={Speces}
+          value={specs}
           onChangeText={(text) => setSpeces(text)}
           style={styles.input}
         />

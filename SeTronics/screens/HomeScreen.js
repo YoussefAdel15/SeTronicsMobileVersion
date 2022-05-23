@@ -339,7 +339,7 @@ const HomeScreen = () => {
         {/* bundle */}
         <View style={{ paddingLeft: 20 }}>
           <FlatList
-            data={bundle.slice(0, 2)}
+            data={bundle.slice(0, 4)}
             horizontal={true}
             renderItem={(itemData) => {
               return (

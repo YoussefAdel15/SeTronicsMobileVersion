@@ -15,12 +15,11 @@ import {
 import { async } from "@firebase/util";
 
 async function getOrders() {
-  const productsColumn = collection(db, "orders");
-  const productSnapShot = await getDocs(productsColumn);
-  const productObject = productSnapShot.docs.map((doc) => {
+  const usersCol = collection(db, "orders");
+  const userSnapshot = await getDocs(usersCol);
+  return userSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-  return productObject;
 }
 
 async function addOrder(object) {

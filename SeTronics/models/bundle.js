@@ -15,13 +15,12 @@ import {
 import { async } from "@firebase/util";
 
 async function getBundleByName(name) {
-  const bundleColumn = collection(db, "bundles");
-  const que = query(bundleColumn, where("bundleName", "==", name));
-  const productSnapShot = await getDocs(que);
-  const bundleObject = productSnapShot.docs.map((doc) => {
-    return { id: doc.id, ...doc.data() };
-  });
-  return bundleObject[0];
+  console.log("get name", name);
+  const collec = collection(db, "bundles");
+  const mdoc = doc(db, "bundles", name);
+  const doc_ref = await getDoc(mdoc);
+  console.log(doc_ref.data());
+  return doc_ref.data();
 }
 
 async function getBundleByID(id) {

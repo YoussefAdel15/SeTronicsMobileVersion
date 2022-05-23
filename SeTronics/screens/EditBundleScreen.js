@@ -54,20 +54,22 @@ import { doc, setDoc } from "firebase/firestore";
 const EditBundleScreen = () => {
   const navigation = useNavigation();
   const [oldBundleName, setOldBundleName] = useState("");
-  const [BundleName, setBundleName] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const [price, setPrice] = useState("");
-  const [Speces, setSpeces] = useState("");
+  const [bundleName, setBundleName] = useState("");
+  const [image, setImageURL] = useState("");
+  const [price, setPrice] = useState(0);
+  const [specs, setSpeces] = useState("");
+  const Type = "Bundle";
 
   const handleEditProduct = async () => {
     const object = await getBundleByName(oldBundleName);
     console.log(object);
     try {
       setDoc(doc(db, "bundles", object.id), {
-        BundleName,
-        imageURL,
+        bundleName,
+        image,
         price,
-        Speces,
+        specs,
+        Type,
       });
       alert("edit done on Product with old Product name : " + oldBundleName);
     } catch (err) {
@@ -131,13 +133,13 @@ const EditBundleScreen = () => {
         </Text>
         <TextInput
           placeholder="BundleName"
-          value={BundleName}
+          value={bundleName}
           onChangeText={(text) => setBundleName(text)}
           style={styles.input}
         />
         <TextInput
           placeholder="ImageURL"
-          value={imageURL}
+          value={image}
           onChangeText={(text) => setImageURL(text)}
           style={styles.input}
         />
@@ -148,8 +150,8 @@ const EditBundleScreen = () => {
           style={styles.input}
         />
         <TextInput
-          placeholder="Speces"
-          value={Speces}
+          placeholder="Specs"
+          value={specs}
           onChangeText={(text) => setSpeces(text)}
           style={styles.input}
         />
