@@ -89,8 +89,9 @@ export default function ProductsScreen({ route, Navigation }) {
             style={{
               fontSize: 18,
               color: COLOURS.backgroundMedium,
-              padding: 12,
-              borderRadius: 10,
+              marginTop:'20%',
+              paddingTop: '35%',
+              borderRadius: '3%',
               backgroundColor: COLOURS.backgroundLight,
             }}
             onPress={() => {
@@ -99,7 +100,7 @@ export default function ProductsScreen({ route, Navigation }) {
           />
         </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "column", alignItems: "center",justifyContent:"space-between",paddingLeft:'43%' }}>
+        <View style={{ flexDirection: "column", alignItems: "center",justifyContent:"space-between",paddingLeft:'40%' }}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               style={{ height: 50, width: 50, borderRadius: 75 }}
