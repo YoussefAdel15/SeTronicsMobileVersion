@@ -72,12 +72,17 @@ export default function ProductsScreen({ route, Navigation }) {
         style={{
           width: "100%",
           flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
+          // justifyContent: "center",
+          // alignItems: "",
           padding: 16,
 
         }}
       >
+        <View
+         style={{
+           alignContent:"space-between"
+         }}
+        >
         <TouchableOpacity>
           <Entypo
             name="chevron-thin-left"
@@ -93,7 +98,8 @@ export default function ProductsScreen({ route, Navigation }) {
             }}
           />
         </TouchableOpacity>
-        <View style={{ flexDirection: "column", alignItems: "center" }}>
+        </View>
+        <View style={{ flexDirection: "column", alignItems: "center",justifyContent:"space-between" }}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               style={{ height: 50, width: 50, borderRadius: 75 }}
