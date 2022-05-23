@@ -80,7 +80,7 @@ export default function ProductsScreen({ route, Navigation }) {
       >
         <View
          style={{
-           alignContent:"space-between"
+           alignContent:"center"
          }}
         >
         <TouchableOpacity>
@@ -99,7 +99,7 @@ export default function ProductsScreen({ route, Navigation }) {
           />
         </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "column", alignItems: "center",justifyContent:"space-between" }}>
+        <View style={{ flexDirection: "column", alignItems: "center",justifyContent:"space-between",paddingLeft:'43%' }}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               style={{ height: 50, width: 50, borderRadius: 75 }}
