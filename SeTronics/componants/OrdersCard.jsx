@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import SmallOrdersCard from "./smallOrdersCard";
@@ -13,6 +14,7 @@ import SmallOrdersCard from "./smallOrdersCard";
 const OrdersCard = ({ arr, user }) => {
   const navigation = useNavigation();
   return (
+
     <TouchableOpacity onPress={() => {}}>
       <View
         style={{
@@ -23,13 +25,23 @@ const OrdersCard = ({ arr, user }) => {
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View>
+          <View style={{
+            
+          }}>
+            
             <FlatList
+            style={{
+              padding:20,
+              // marginBottom:100
+            }}
               data={arr}
               horizontal={true}
               renderItem={(itemData) => {
                 return (
-                  <SmallOrdersCard
+                  <SmallOrdersCard style={{
+                    flexDirection: "column", flex: "100%", width: "75%",padding:50,
+                    marginBottom:200
+                  }}
                     image={itemData.item.image}
                     productName={itemData.item.productName}
                     price={itemData.item.price}
@@ -38,12 +50,15 @@ const OrdersCard = ({ arr, user }) => {
               }}
             ></FlatList>
           </View>
-          <View>
+          <View  style={{
+           flexDirection: "column", flex: "100%", width: "75%"
+          }}>
             <Text>The User: {user} Orderd This order</Text>
           </View>
         </View>
       </View>
     </TouchableOpacity>
+    
   );
 };
 

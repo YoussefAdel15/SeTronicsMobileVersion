@@ -55,6 +55,8 @@ import {
 import AllProductsCard from "../componants/AllProductsCard";
 import { addOrder } from "../models/order";
 import AllBundlesCard from "../componants/AllBundlesCard";
+import BCART from "../componants/BCART";
+import PCART from "../componants/PCART";
 
 const CartScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -184,15 +186,12 @@ const CartScreen = ({ route }) => {
         </Text>
         <View style={{ paddingHorizontal: 16 }}>
           <FlatList
-            // onPress={() => {
-            //   navigation.navigate("productinfo", { id });
-            // }}
             data={ProductInCart}
             horizontal={false}
             renderItem={(itemData) => {
               if (itemData.item.Type === "Bundle") {
                 return (
-                  <AllBundlesCard
+                  <BCART
                     bundleName={itemData.item.bundleName}
                     price={itemData.item.price}
                     specs={itemData.item.specs}
@@ -203,7 +202,7 @@ const CartScreen = ({ route }) => {
                 );
               }
               return (
-                <AllProductsCard
+                <PCART
                   productName={itemData.item.productName}
                   price={itemData.item.price}
                   details={itemData.item.details}

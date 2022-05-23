@@ -42,6 +42,8 @@ const OrdersScreen = () => {
     getOrdersHandler();
   }, []);
   return (
+    <ScrollView>
+
     <View style={styles.container} behavior={"padding"}>
       <View
         style={{
@@ -68,8 +70,11 @@ const OrdersScreen = () => {
           />
         </TouchableOpacity>
       </View>
+
       <View style={{ marginTop: 50 }}>
-        <FlatList
+        <FlatList style={{
+          
+        }}
           data={orders}
           horizontal={false}
           renderItem={(itemData) => {
@@ -82,7 +87,10 @@ const OrdersScreen = () => {
           }}
         ></FlatList>
       </View>
+
     </View>
+    </ScrollView>
+
   );
 };
 
