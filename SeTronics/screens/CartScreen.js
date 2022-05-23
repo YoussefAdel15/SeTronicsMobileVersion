@@ -184,9 +184,9 @@ const CartScreen = ({ route }) => {
         </Text>
         <View style={{ paddingHorizontal: 16 }}>
           <FlatList
-            onPress={() => {
-              navigation.navigate("productinfo", { id });
-            }}
+            // onPress={() => {
+            //   navigation.navigate("productinfo", { id });
+            // }}
             data={ProductInCart}
             horizontal={false}
             renderItem={(itemData) => {
@@ -346,8 +346,8 @@ const CartScreen = ({ route }) => {
         <TouchableOpacity
           onPress={() => (total != 0 ? handleCheckOut() : null)}
           style={{
-            width: "86",
-            height: "90",
+            width: "90%",
+            height: "40%",
             backgroundColor: COLOURS.blue,
             borderRadius: 20,
             justifyContent: "center",
