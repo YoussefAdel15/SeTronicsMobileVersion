@@ -8,7 +8,6 @@ const AllProductsCard = ({ productName, price, image, details, type, id }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        // this is the navigation to the productinfo page check
         navigation.navigate("Productinfo", {
           productName,
           price,
