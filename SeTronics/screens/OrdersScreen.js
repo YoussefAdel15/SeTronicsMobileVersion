@@ -71,16 +71,24 @@ const OrdersScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{ marginTop: 50 }}>
+      <View style={{ marginTop: 50 , flex:'100%',}}>
         <FlatList style={{
-          
+          // flex:'100%',
+          height:'500%',
+          flexDirection:'row',
         }}
           data={orders}
-          horizontal={false}
+          horizontal={true}
           renderItem={(itemData) => {
             return (
-              <OrdersCard
+              <OrdersCard style={{
+                marginBottom:50,
+                flex:'100%',
+                flexDirection:'row',
+                backgroundColor:'black'
+              }}
                 arr={itemData.item.ProductInCart}
+                
                 user={itemData.item.user}
               />
             );

@@ -35,11 +35,11 @@ const OrdersCard = ({ arr, user }) => {
               // marginBottom:100
             }}
               data={arr}
-              horizontal={true}
+              horizontal={false}
               renderItem={(itemData) => {
                 return (
                   <SmallOrdersCard style={{
-                    flexDirection: "column", flex: "100%", width: "75%",padding:50,
+                    flexDirection: "row", flex: "100%", width: "75%",padding:50,
                     marginBottom:200
                   }}
                     image={itemData.item.image}

@@ -8,9 +8,10 @@ const SmallOrdersCard = ({ productName, price, image, details, type, id }) => {
     <TouchableOpacity>
       <View
         style={{
-          height: 200,
-          width: 100,
-          marginRight: 40,
+          height: '50%',
+          width: '75%',
+          marginRight: 10,
+          marginBottom:50,
           justifyContent: "center",
         }}
       >
