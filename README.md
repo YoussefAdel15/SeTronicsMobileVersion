@@ -1,6 +1,6 @@
 # SeTronicsMobileVersion
 
-this app is a ecommerce application this is used to make buying a PC easy for every one ,
+this app is an ecommerce application ,that is used to make buying a PC easy for everyone ,
 this product uses react-native (frontEnd) along with firebase and javaScript (Backend and DataBase)
 
 ## Getting Started
